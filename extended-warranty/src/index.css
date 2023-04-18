@@ -13,6 +13,11 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  p, span {
+    font-weight: 400;
+    color: #759190;
+  }
+
   a {
     font-weight: 500;
     color: #fff;
@@ -24,12 +29,15 @@
   }
 
   body {
-    margin: 0;
+    margin: 0 auto;
     display: flex;
     place-items: center;
     min-width: 320px;
+    max-width: 1220px;
     min-height: 100vh;
     background-color: #fff;
+    box-sizing: border-box;
+    padding:0 20px;
   }
 
   h1 {
