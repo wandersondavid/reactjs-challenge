@@ -59,7 +59,13 @@ export const Cart = () => {
         </Link>
       </Box>}
       {!!Object.entries(cart).length && <Box sx={{ width: '100%' }}>
-        <Card sx={{ width: '96%', padding: '16px' }}>
+        <Card sx={{
+          width: '96%',
+          padding: '16px',
+          '@media (max-width: 1000px)': {
+            width: 'initial',
+          }
+        }}>
           <Typography sx={{ width: '100%', textAlign: 'center' }}>Seus Produtos</Typography>
 
           {Object.entries(cart).map(([key, value]) => (

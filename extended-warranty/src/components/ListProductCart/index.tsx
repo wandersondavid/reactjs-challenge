@@ -44,8 +44,8 @@ export const ListProductCart = (props: Props) => {
       gap: '16px',
     }}>
 
-      <Box sx={{ display: 'flex', flexDirection:  'column'}}>
-        <Box sx={{display: 'flex'}}>
+      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+        <Box sx={{ display: 'flex' }}>
           <CardMedia
             component="img"
             sx={{
@@ -87,7 +87,19 @@ export const ListProductCart = (props: Props) => {
         </Box>
       </Box>
 
-      <Box sx={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', backgroundColor: '#D3D9DF', borderRadius: '8px', marginTop: '16px'}}>
+      <Box sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
+        backgroundColor: '#D3D9DF',
+        borderRadius: '8px',
+        marginTop: '16px',
+        padding: '16px',
+        '@media (max-width: 600px)': {
+          overflowX: 'scroll'
+        }
+      }}>
         <ExtendedWarranty price={props.price} amount={props.amount} onChange={(value: number) => handleChangeWarranty(props.id, value)} />
       </Box>
     </Box>

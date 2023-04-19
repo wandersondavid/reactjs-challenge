@@ -70,7 +70,7 @@ export const ExtendedWarranty = (props: Props) => {
 
   return (
     <>
-      <Typography >Garantia Estendida</Typography>
+      <Typography variant='h3' sx={{fontSize: '1.2rem', fontWeight: 400}}>Garantia Estendida</Typography>
       <Typography>Voce pode estender o tempo de garantia deste produto</Typography>
       <Box sx={{ maxWidth: 400, width: '100%' }}>
         <Slider
