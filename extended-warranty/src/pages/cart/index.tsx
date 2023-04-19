@@ -3,6 +3,7 @@ import { useShoppingCart } from "../../context/context";
 import { ListProductCart } from "../../components/ListProductCart";
 import { Product } from "../../types/produts";
 import { formatMoney } from "../../utils/money";
+import { Link } from "react-router-dom";
 
 type Select = {
   [key: string]: (product: Product) => void;
@@ -20,15 +21,16 @@ export const Cart = () => {
   }
 
 
+
   const handleWarranty = (id: number, value: number) => {
     extendedWarranty(id, value)
   }
 
   const sales = !!Object.entries(cart).length
     ? Object.entries(cart).reduce((acc, [_, value]) => {
-        const extraWarranty = value.extraWarranty || 0
-        return (acc + (value.price * value.amount) + extraWarranty)
-      }, 0)
+      const extraWarranty = value.extraWarranty || 0
+      return (acc + (value.price * value.amount) + extraWarranty)
+    }, 0)
     : 0;
 
   return (
@@ -44,7 +46,7 @@ export const Cart = () => {
       {!Object.entries(cart).length && <Box sx={{ width: '100%' }}>
         <Typography sx={{ width: '100%', textAlign: 'center' }}>Carrinho Vazio</Typography>
       </Box>}
-      {!!Object.entries(cart).length && <Box sx={{ width: '100%', background: `red` }}>
+      {!!Object.entries(cart).length && <Box sx={{ width: '100%' }}>
         <Card sx={{ width: '100%' }}>
           <Typography sx={{ width: '100%', textAlign: 'center' }}>Seus Produtos</Typography>
           {Object.entries(cart).map(([key, value]) => (
@@ -62,10 +64,13 @@ export const Cart = () => {
             <Typography sx={{ width: '100%', textAlign: 'right' }}> {formatMoney(sales, 'BRL')}</Typography>
           </Box>
 
-          <Button variant="contained" sx={{ width: '100%', marginBottom: '10px' }}>
-            Continuar Comprando
-          </Button>
-          <Button variant="contained" sx={{ width: '100%' }}>
+          <Link to="/">
+            <Button variant="contained" sx={{ width: '100%',marginTop:'16px' }}>
+              Continuar Comprando
+            </Button>
+
+          </Link>
+          <Button variant="contained" sx={{ width: '100%', marginTop:'16px' }}>
             Finalizar Compra
           </Button>
         </Card>
