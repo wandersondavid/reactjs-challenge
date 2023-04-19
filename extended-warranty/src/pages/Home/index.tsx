@@ -2,11 +2,9 @@ import { useEffect, useState } from "react";
 import { Product } from "../../types/produts";
 import { CardProduct } from "../../components/CardProduct";
 import { CardContent } from "@mui/material";
-
-
+import { Cart } from "../../components/cart";
 
 export const Home = () => {
-
   const [products, setProducts] = useState<Product[]>([]);
 
   const fetchProducts = async () => {
@@ -37,10 +35,10 @@ export const Home = () => {
   }, []);
 
   return (
-    <main>
+    <main style={{height:'100%'}}>
       <h1>Home</h1>
-
-      <CardContent sx={{ display: 'grid' ,gridTemplateColumns: '384px 384px 384px', gridGap: 16}}>
+      <Cart />
+      <CardContent sx={{ display: 'grid' ,gridTemplateColumns: '384px 384px 384px', padding:'16px 0px 20px 0px', gridGap: 16}}>
         {products?.map((product) => (<CardProduct
           id={product.id}
           title={product.title}
