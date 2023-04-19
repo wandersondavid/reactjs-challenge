@@ -83,7 +83,19 @@ export const Home = () => {
     <main style={{ height: '100%' }}>
       <h1>Home</h1>
       <Cart cart={cart} />
-      <CardContent sx={{ display: 'grid', gridTemplateColumns: '384px 384px 384px', padding: '16px 0px 20px 0px', gridGap: 16 }}>
+      <CardContent sx={{
+        display: 'grid',
+        gridTemplateColumns: '384px 384px 384px',
+        padding: '16px 0px 20px 0px',
+        gridGap: 16,
+        '@media (max-width: 1200px)': {
+          gridTemplateColumns: '384px 384px',
+          justifyContent: 'center'
+        },
+        '@media (max-width: 840px)': {
+          gridTemplateColumns: '384px'
+        }
+      }}>
         {products?.map((product) => (<CardProduct
           key={product.id}
           id={product.id}
