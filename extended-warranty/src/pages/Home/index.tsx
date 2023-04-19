@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Product } from "../../types/produts";
 import { CardProduct } from "../../components/CardProduct";
-import { CardContent } from "@mui/material";
+import { Card, CardContent, CircularProgress } from "@mui/material";
 import { Cart } from "../../components/cart";
 import { useShoppingCart } from "../../context/context";
 
@@ -11,6 +11,7 @@ type Select = {
 
 export const Home = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setSoading] = useState<Boolean>(true);
 
   const { cart } = useShoppingCart()
 
@@ -33,8 +34,9 @@ export const Home = () => {
 
       const newData = convertToPriceCent(products, 5.5);
       setProducts(newData);
-
+      setSoading(false)
     } catch (error) {
+      setSoading(false)
       console.log(error);
     }
   }
@@ -51,6 +53,7 @@ export const Home = () => {
 
   useEffect(() => {
     fetchProducts();
+
     fetchCategories();
   }, []);
 
@@ -63,6 +66,17 @@ export const Home = () => {
     }
 
     return select[type] && select[type](product);
+  }
+
+  if (loading) {
+    return (<Card sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <CardContent>
+        <>
+          <CircularProgress />
+        </>
+        <p>Carregando...</p>
+      </CardContent>
+    </Card>)
   }
 
   return (
