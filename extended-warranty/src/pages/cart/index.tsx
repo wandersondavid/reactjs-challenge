@@ -42,15 +42,21 @@ export const Cart = () => {
       marginTop: '150px',
       padding: '16px',
       gap: '16px',
+      '@media (max-width: 1000px)': {
+        flexDirection: 'column-reverse',
+        alignItems: 'center',
+        width: '100%',
+      }
+
     }}>
       {!Object.entries(cart).length && <Box sx={{ width: '100%' }}>
         <Typography sx={{ width: '100%', textAlign: 'center' }}>Carrinho Vazio</Typography>
         <Link to="/">
-            <Button variant="contained" sx={{ width: '100%', marginTop: '16px' }}>
-              Continuar Comprando
-            </Button>
+          <Button variant="contained" sx={{ width: '100%', marginTop: '16px' }}>
+            Continuar Comprando
+          </Button>
 
-          </Link>
+        </Link>
       </Box>}
       {!!Object.entries(cart).length && <Box sx={{ width: '100%' }}>
         <Card sx={{ width: '96%', padding: '16px' }}>
@@ -72,8 +78,15 @@ export const Cart = () => {
       </Box>
       }
 
-      {!!Object.entries(cart).length && <Box>
-        <Card sx={{ width: '300px', padding: '8px', height: 'fit-content', }}>
+      {!!Object.entries(cart).length && <Box sx={{ width: '100%', boxSizing: 'border-box' }}>
+        <Card sx={{
+          width: '300px',
+          padding: '8px',
+          height: 'fit-content',
+          '@media (max-width: 1000px)': {
+            width: 'initial',
+          }
+        }}>
           <Typography sx={{ width: '100%', textAlign: 'center' }}>Resumo</Typography>
           <Box sx={{ display: 'flex' }}>
             <Typography sx={{ width: '100%', textAlign: 'left' }}>Total:</Typography>
