@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import { Home } from "./pages/Home";
+import { Cart } from "./pages/cart";
 
 
 function App() {
@@ -14,8 +15,8 @@ function App() {
       element: <Home />,
     },
     {
-      path: "/shophing-cart",
-      element: <div>Hello test!</div>,
+      path: "/cart",
+      element: <Cart />,
     },
   ]);
 console.log(`testet`);
