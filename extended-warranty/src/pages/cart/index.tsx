@@ -2,6 +2,7 @@ import { Box, Button, Card, Container, List, Typography, styled } from "@mui/mat
 import { useShoppingCart } from "../../context/context";
 import { ListProductCart } from "../../components/ListProductCart";
 import { Product } from "../../types/produts";
+import { formatMoney } from "../../utils/money";
 
 type Select = {
   [key: string]: (product: Product) => void;
@@ -22,6 +23,13 @@ export const Cart = () => {
   const handleWarranty = (id: number, value: number) => {
     extendedWarranty(id, value)
   }
+
+  const sales = !!Object.entries(cart).length
+    ? Object.entries(cart).reduce((acc, [_, value]) => {
+        const extraWarranty = value.extraWarranty || 0
+        return (acc + (value.price * value.amount) + extraWarranty)
+      }, 0)
+    : 0;
 
   return (
     <Container sx={{
@@ -47,26 +55,17 @@ export const Cart = () => {
       }
 
       {!!Object.entries(cart).length && <Box>
-        <Card sx={{ width: '300px', padding: '8px',height: 'fit-content',  }}>
+        <Card sx={{ width: '300px', padding: '8px', height: 'fit-content', }}>
           <Typography sx={{ width: '100%', textAlign: 'center' }}>Resumo</Typography>
           <Box sx={{ display: 'flex' }}>
             <Typography sx={{ width: '100%', textAlign: 'left' }}>Total:</Typography>
-            <Typography sx={{ width: '100%', textAlign: 'right' }}>R$ {Object.entries(cart).reduce((acc, [key, value]) => acc + (value.price * value.amount), 0)}</Typography>
+            <Typography sx={{ width: '100%', textAlign: 'right' }}> {formatMoney(sales, 'BRL')}</Typography>
           </Box>
 
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-            <Typography sx={{ width: '100%', textAlign: 'left' }}>Total com garantia extendida:</Typography>
-          </Box>
-
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-            <Typography sx={{ width: '100%', textAlign: 'left' }}>Sub Total:</Typography>
-          </Box>
-
-
-          <Button variant="contained" sx={{width: '100%', marginBottom: '10px'}}>
+          <Button variant="contained" sx={{ width: '100%', marginBottom: '10px' }}>
             Continuar Comprando
           </Button>
-          <Button variant="contained" sx={{width: '100%'}}>
+          <Button variant="contained" sx={{ width: '100%' }}>
             Finalizar Compra
           </Button>
         </Card>

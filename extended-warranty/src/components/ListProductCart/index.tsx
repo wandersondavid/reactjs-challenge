@@ -12,7 +12,7 @@ type Props = {
   price: number;
   amount: number;
   id: number;
-  extraWarranty?: number;
+  extraWarranty?: number | null | undefined;
   onChangeWarranty: (id: number, value: number) => void;
 }
 
@@ -26,6 +26,9 @@ export const ListProductCart = (props: Props) => {
   const handleChangeWarranty = (id: number, value: number) => {
     props.onChangeWarranty(id, value)
   }
+
+  const extraWarranty = props.extraWarranty || 0
+  const price = (props.price * props.amount) + extraWarranty
 
   return (
     <Box sx={{
@@ -58,7 +61,7 @@ export const ListProductCart = (props: Props) => {
         </CardContent>
         <Box sx={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
           <Typography variant="subtitle1" color="text.secondary" component="div">
-            {formatMoney((props.price * props.amount), 'BRL')}
+            {formatMoney(price, 'BRL')}
           </Typography>
         </Box>
 
