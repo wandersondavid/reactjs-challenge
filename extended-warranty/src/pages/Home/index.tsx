@@ -1,20 +1,8 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { Product } from "../../types/produts";
+import { CardProduct } from "../../components/CardProduct";
+import { CardContent } from "@mui/material";
 
-type rating = {
-  rate: number;
-  count: number;
-};
-
-
-type Product = {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: rating;
-}
 
 
 export const Home = () => {
@@ -22,7 +10,7 @@ export const Home = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
   const fetchProducts = async () => {
-    try{
+    try {
       const data = await fetch('https://fakestoreapi.com/products');
       const products = await data.json();
       setProducts(products);
@@ -30,30 +18,39 @@ export const Home = () => {
     } catch (error) {
       console.log(error);
     }
+  }
 
+  const fetchCategories = async () => {
+    try {
+      const data = await fetch('https://fakestoreapi.com/products/categories');
+      const categories = await data.json();
+      console.log(categories);
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {
     fetchProducts();
+    fetchCategories();
   }, []);
 
   return (
     <main>
       <h1>Home</h1>
 
-      {products?.map((product) => (
-        <div key={product.id}>
-          <h2>{product.title}</h2>
-          <p>{product.price}</p>
-          <p>{product.description}</p>
-          <p>{product.category}</p>
-          <img src={product.image} alt={product.title} />
-          <p>{product.rating.rate}</p>
-          <p>{product.rating.count}</p>
-        </div>
-      ))}
-
-
+      <CardContent sx={{ display: 'grid' ,gridTemplateColumns: '384px 384px 384px', gridGap: 16}}>
+        {products?.map((product) => (<CardProduct
+          id={product.id}
+          title={product.title}
+          price={product.price}
+          description={product.description}
+          category={product.category}
+          image={product.image}
+          rating={product.rating}
+        />))}
+      </CardContent>
     </main>
   )
 
