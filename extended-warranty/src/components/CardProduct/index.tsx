@@ -1,18 +1,31 @@
-import { Box, Button, Card, CardContent, CardMedia, IconButton, Typography, useTheme } from "@mui/material"
-import { Product } from "../../types/produts"
+import { Box, Button, Card, CardContent, CardMedia, IconButton, Rating, Typography, useTheme } from "@mui/material"
+import { Cart, Product } from "../../types/produts"
 
-export const CardProduct = (props: Product) => {
+
+type Props = {
+  onChange: (product: Product, type: string) => void;
+  cart: Cart;
+} & Product;
+
+export const CardProduct = (props: Props) => {
 
   const theme = useTheme();
+
+
+  const handleChangeProduct = (product:Product, type: string) => {
+    props.onChange(product, type )
+  }
+
   return (
-    <Card sx={{
+    <Card  key={props.id} sx={{
       display: 'flex',
       flexDirection: 'column',
       maxHeight: 384, height: '100%',
       maxWidth: '384px',
       width: '100%',
       padding: '20px',
-      boxSizing: 'border-box'
+      boxSizing: 'border-box',
+      justifyContent: 'space-between'
     }}>
 
       <Box sx={{ display: 'flex' }}>
@@ -40,21 +53,31 @@ export const CardProduct = (props: Product) => {
           <Typography variant="subtitle1" color="text.secondary" component="div">
             {props.price}
           </Typography>
-          <Typography variant="subtitle1" color="text.secondary" component="div">
-            Rate ({props.rating.rate})
-          </Typography>
+
+          <Box sx={{ display: 'flex' }}>
+            <Rating
+              name="simple-controlled"
+              value={props.rating.rate}
+              color="secondary"
+              readOnly
+            />
+
+            <Typography variant="subtitle1" color="text.secondary" component="div">
+              ({props.rating.rate})
+            </Typography>
+          </Box>
         </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-          <Button variant="contained" sx={{ width: '100%', marginTop: '20px', justifyContent: 'center', alignItems: 'center', margin: 0 }}>
-            +
+          <Button onClick={()=>handleChangeProduct(props, 'remove')} variant="contained" sx={{ width: '100%', marginTop: '20px', justifyContent: 'center', alignItems: 'center', margin: 0 }}>
+            -
           </Button>
 
-          <Typography variant="subtitle1" color="text.secondary" component="div" sx={{ margin: '0 10px' }}>
-            1
+          <Typography variant="subtitle1" color="text.secondary" component="div" sx={{ margin: '0 10px', minWidth: '50px', textAlign: 'center' }}>
+            {props.cart[props.id]?.amount || 0}
           </Typography>
-          <Button variant="contained" sx={{ width: '100%', marginTop: '20px', margin: 0 }}>
-            -
+          <Button onClick={()=>handleChangeProduct(props, 'add')} variant="contained" sx={{ width: '100%', marginTop: '20px', margin: 0 }}>
+            +
           </Button>
         </Box>
       </Box>

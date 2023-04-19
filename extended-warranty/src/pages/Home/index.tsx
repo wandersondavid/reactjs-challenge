@@ -3,9 +3,18 @@ import { Product } from "../../types/produts";
 import { CardProduct } from "../../components/CardProduct";
 import { CardContent } from "@mui/material";
 import { Cart } from "../../components/cart";
+import { useShoppingCart } from "../../context/context";
+
+type Select = {
+  [key: string]: (product: Product) => void;
+}
 
 export const Home = () => {
   const [products, setProducts] = useState<Product[]>([]);
+
+  const { cart } = useShoppingCart()
+
+  console.log(cart);
 
   const fetchProducts = async () => {
     try {
@@ -34,12 +43,24 @@ export const Home = () => {
     fetchCategories();
   }, []);
 
+  const { addProduct, removeProduct } = useShoppingCart();
+  const handleCart = (product: Product, type: string) => {
+
+    const select: Select = {
+      'add': addProduct,
+      'remove': (product: Product) => removeProduct(product.id),
+    }
+
+    return select[type] && select[type](product);
+  }
+
   return (
-    <main style={{height:'100%'}}>
+    <main style={{ height: '100%' }}>
       <h1>Home</h1>
-      <Cart />
-      <CardContent sx={{ display: 'grid' ,gridTemplateColumns: '384px 384px 384px', padding:'16px 0px 20px 0px', gridGap: 16}}>
+      <Cart cart={cart} />
+      <CardContent sx={{ display: 'grid', gridTemplateColumns: '384px 384px 384px', padding: '16px 0px 20px 0px', gridGap: 16 }}>
         {products?.map((product) => (<CardProduct
+          key={product.id}
           id={product.id}
           title={product.title}
           price={product.price}
@@ -47,9 +68,10 @@ export const Home = () => {
           category={product.category}
           image={product.image}
           rating={product.rating}
+          onChange={handleCart}
+          cart={cart}
         />))}
       </CardContent>
     </main>
   )
-
 }

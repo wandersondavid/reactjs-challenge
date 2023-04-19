@@ -3,7 +3,7 @@ import { styled } from '@mui/material';
 export const HeaderStyled = styled('header')(({ theme }) => ({
   width: '100%',
   backgroundColor: theme.palette.primary.main,
-  position: 'fixed',
+  position: 'absolute',
   top: 0,
   left: 0,
   height: 100,
@@ -12,7 +12,7 @@ export const HeaderStyled = styled('header')(({ theme }) => ({
     alignItems: 'center',
     justifyContent: 'space-between',
     height: '100%',
-    maxWidth: 1215,
+    maxWidth: 1280,
     margin: '0 auto',
   }
 }));

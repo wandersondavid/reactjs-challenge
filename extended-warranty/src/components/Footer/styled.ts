@@ -3,7 +3,7 @@ import { styled } from '@mui/material';
 export const FooterStyled = styled('footer')(({ theme }) => ({
   width: '100%',
   backgroundColor: theme.palette.primary.main,
-  position: 'fixed',
+  position: 'initial',
   bottom: 0,
   left: 0,
   height: 100,

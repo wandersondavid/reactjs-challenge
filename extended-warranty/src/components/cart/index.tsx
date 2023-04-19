@@ -2,8 +2,13 @@ import { Box, Card, CardContent, IconButton, Typography } from "@mui/material"
 
 import { ShoppingBasket } from "@mui/icons-material"
 import { Link } from "react-router-dom"
+import { Cart as CartProps} from "../../types/produts"
 
-export const Cart = () => {
+type Props = {
+  cart: CartProps;
+}
+
+export const Cart = ({cart}: Props ) => {
 
   return (
     <Card sx={{
@@ -21,7 +26,8 @@ export const Cart = () => {
         </IconButton>
 
         <Typography component="div" variant="h5" sx={{ fontSize: '1.25rem' }}>
-          00.00
+          {!!Object.keys(cart).length && Object.entries(cart).reduce((acc, [_, value]) => acc + value.amount * value.price, 0)}
+          {!Object.keys(cart).length && 0}
         </Typography>
       </CardContent>
       <Box>
