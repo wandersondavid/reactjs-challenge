@@ -17,6 +17,7 @@ export const Home = () => {
   const converteToPriceCent = (products: Product[]) => {
     return products.map((product) => {
       const price = product.price.toString().replace('.', '');
+
       return {
         ...product,
         price: parseInt(price)
@@ -42,7 +43,6 @@ export const Home = () => {
     try {
       const data = await fetch('https://fakestoreapi.com/products/categories');
       const categories = await data.json();
-      console.log(categories);
 
     } catch (error) {
       console.log(error);

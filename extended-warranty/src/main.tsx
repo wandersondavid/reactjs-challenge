@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <ShoppingCartProvider>
         <Header />
         <App />
-        <Footer />
+        {/* <Footer /> */}
       </ShoppingCartProvider>
     </ThemeProvider>
   </React.StrictMode>
