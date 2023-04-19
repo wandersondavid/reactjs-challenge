@@ -4,6 +4,9 @@ import { ListProductCart } from "../../components/ListProductCart";
 import { Product } from "../../types/produts";
 import { formatMoney } from "../../utils/money";
 import { Link } from "react-router-dom";
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+import { useState } from "react";
 
 type Select = {
   [key: string]: (product: Product) => void;
@@ -11,6 +14,8 @@ type Select = {
 
 export const Cart = () => {
   const { cart, addProduct, removeProduct, extendedWarranty } = useShoppingCart();
+
+  const [submit, setSubmit] = useState<Boolean>(false)
 
   const handleCart = (product: Product, type: string) => {
     const select: Select = {
@@ -24,6 +29,14 @@ export const Cart = () => {
 
   const handleWarranty = (id: number, value: number) => {
     extendedWarranty(id, value)
+  }
+
+  const handleSubmitDataSales = () => {
+    console.log('------------Cart------------')
+    console.log(cart)
+    console.log('------------Cart------------')
+    // chamar para api
+    setSubmit(true)
   }
 
   const sales = !!Object.entries(cart).length
@@ -105,11 +118,15 @@ export const Cart = () => {
             </Button>
 
           </Link>
-          <Button variant="contained" sx={{ width: '100%', marginTop: '16px' }}>
+          <Button variant="contained" disabled={!Object.entries(cart).length} onClick={handleSubmitDataSales} sx={{ width: '100%', marginTop: '16px' }}>
             Finalizar Compra
           </Button>
         </Card>
       </Box>}
+
+      {(submit && !!Object.entries(cart).length) && <Stack sx={{ width: '100%', position: 'absolute', bottom: `50px`, left: 0 }} spacing={2}>
+        <Alert severity="success">Compra realizada com sucesso!, verifique o console!</Alert>
+      </Stack>}
     </Container >
   )
 }
