@@ -21,14 +21,14 @@ export const Cart = ({cart}: Props ) => {
       alignItems: 'center',
     }}>
 
-      <CardContent sx={{ width: `100px`, display: 'flex', alignItems: 'center', backgroundColor: '#D2FEE1', borderRadius:'8px' }}>
+      <CardContent sx={{ width: `200px`, display: 'flex', alignItems: 'center', backgroundColor: '#D2FEE1', borderRadius:'8px' }}>
         <IconButton >
           <ShoppingBasket />
         </IconButton>
 
         <Typography component="div" variant="h5" sx={{ fontSize: '1.25rem' }}>
           {!!Object.keys(cart).length && formatMoney(Object.entries(cart).reduce((acc, [_, value]) => acc + value.amount * value.price, 0), 'BRL')}
-          {!Object.keys(cart).length && 0}
+          {!Object.keys(cart).length && formatMoney(0, 'BRL')}
         </Typography>
       </CardContent>
       <Box>

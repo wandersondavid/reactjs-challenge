@@ -37,7 +37,7 @@ export const Cart = () => {
     <Container sx={{
       height: 'fit-content',
       display: 'flex',
-      alignItems: 'center',
+      alignItems: 'flex-start',
       justifyContent: 'center',
       marginTop: '150px',
       padding: '16px',
@@ -45,12 +45,28 @@ export const Cart = () => {
     }}>
       {!Object.entries(cart).length && <Box sx={{ width: '100%' }}>
         <Typography sx={{ width: '100%', textAlign: 'center' }}>Carrinho Vazio</Typography>
+        <Link to="/">
+            <Button variant="contained" sx={{ width: '100%', marginTop: '16px' }}>
+              Continuar Comprando
+            </Button>
+
+          </Link>
       </Box>}
       {!!Object.entries(cart).length && <Box sx={{ width: '100%' }}>
-        <Card sx={{ width: '100%' }}>
+        <Card sx={{ width: '96%', padding: '16px' }}>
           <Typography sx={{ width: '100%', textAlign: 'center' }}>Seus Produtos</Typography>
+
           {Object.entries(cart).map(([key, value]) => (
-            <ListProductCart id={value.id} key={key} title={value.title} price={value.price} amount={value.amount} image={value.image} onChange={handleCart} onChangeWarranty={handleWarranty} extraWarranty={value.extraWarranty} />
+            <ListProductCart
+              id={value.id}
+              key={key}
+              title={value.title}
+              price={value.price}
+              amount={value.amount}
+              image={value.image}
+              onChange={handleCart}
+              onChangeWarranty={handleWarranty}
+              extraWarranty={value.extraWarranty} />
           ))}
         </Card>
       </Box>
@@ -65,12 +81,12 @@ export const Cart = () => {
           </Box>
 
           <Link to="/">
-            <Button variant="contained" sx={{ width: '100%',marginTop:'16px' }}>
+            <Button variant="contained" sx={{ width: '100%', marginTop: '16px' }}>
               Continuar Comprando
             </Button>
 
           </Link>
-          <Button variant="contained" sx={{ width: '100%', marginTop:'16px' }}>
+          <Button variant="contained" sx={{ width: '100%', marginTop: '16px' }}>
             Finalizar Compra
           </Button>
         </Card>
