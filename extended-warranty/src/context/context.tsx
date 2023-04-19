@@ -14,6 +14,7 @@ type ShoppingCartContextData = {
   addProduct: (product: Product) => void;
   removeProduct: (productId: number) => void;
   deleteProduct: (productId: number, amount: number) => void;
+  extendedWarranty: (productId: number, value: number) => void;
   cart: Cart;
 }
 
@@ -80,6 +81,21 @@ console.log('ShoppingCartProvider');
     }
   }
 
+  const extendedWarranty = (productId: number, value: number) => {
+
+    const cartProduct = cart[productId];
+    if (cartProduct) {
+      setCart({
+        ...cart,
+        [productId]: {
+          ...cartProduct,
+          extraWarranty: value
+        }
+      });
+    }
+  }
+
+
 
 
   return (
@@ -87,7 +103,8 @@ console.log('ShoppingCartProvider');
       addProduct,
       removeProduct,
       deleteProduct,
-      cart: cart
+      cart: cart,
+      extendedWarranty
     }}
     >
       {children}

@@ -14,13 +14,24 @@ export const Home = () => {
 
   const { cart } = useShoppingCart()
 
-  console.log(cart);
+  const converteToPriceCent = (products: Product[]) => {
+    return products.map((product) => {
+      const price = product.price.toString().replace('.', '');
+      return {
+        ...product,
+        price: parseInt(price)
+      }
+    })
+  }
 
   const fetchProducts = async () => {
     try {
       const data = await fetch('https://fakestoreapi.com/products');
       const products = await data.json();
-      setProducts(products);
+
+
+      const newData = converteToPriceCent(products);
+      setProducts(newData);
 
     } catch (error) {
       console.log(error);

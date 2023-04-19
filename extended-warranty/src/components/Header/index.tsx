@@ -7,11 +7,8 @@ export const Header = () => {
   return (
     <HeaderStyled >
       <div>
-        <div className="header__logo">
+        <div>
           <img src={logo} alt="Logo" />
-        </div>
-        <div className="">
-          <a href="#">Seu Carrinho</a>
         </div>
       </div>
     </HeaderStyled>

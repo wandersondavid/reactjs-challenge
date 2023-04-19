@@ -31,7 +31,7 @@ export const Cart = ({cart}: Props ) => {
         </Typography>
       </CardContent>
       <Box>
-        <Link to={'/shop'} style={{color:'#000'}} >Ir para carrinho</Link>
+        <Link to={'/cart'} style={{color:'#000'}} >Ir para carrinho</Link>
       </Box>
 
     </Card>

@@ -20,5 +20,6 @@ export type Cart = {
     price: number;
     image: string;
     amount: number;
+    extraWarranty?: number;
   };
 }

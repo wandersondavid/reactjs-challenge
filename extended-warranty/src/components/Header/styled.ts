@@ -12,7 +12,6 @@ export const HeaderStyled = styled('header')(({ theme }) => ({
     alignItems: 'center',
     justifyContent: 'space-between',
     height: '100%',
-    maxWidth: 1280,
     margin: '0 auto',
   }
 }));
