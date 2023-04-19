@@ -19,7 +19,7 @@ function App() {
       element: <Cart />,
     },
   ]);
-console.log(`testet`);
+
   return (
     <>
       <RouterProvider router={router} />

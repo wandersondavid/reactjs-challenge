@@ -22,12 +22,10 @@ export const ShoppingCartContext = createContext({} as ShoppingCartContextData);
 
 export const ShoppingCartProvider = ({ children }: ShoppingCartProps) => {
 
-console.log('ShoppingCartProvider');
   const [cart, setCart] = useState<Cart>({});
 
   const addProduct = (product: Product) => {
 
-    console.log(product);
     const { id, title, price, image } = product;
     const cartProduct = cart[id];
 
@@ -54,14 +52,12 @@ console.log('ShoppingCartProvider');
   }
 
   const removeProduct = (productId: number) => {
-    console.log(`removeProduct ${productId}`);
     const cartProduct = cart[productId];
     if (cartProduct) {
       if (cartProduct.amount === 1) {
         const { [productId]: removedProduct, ...rest } = cart;
         setCart(rest);
       } else {
-        console.log('removeProduct');
         setCart({
           ...cart,
           [productId]: {
