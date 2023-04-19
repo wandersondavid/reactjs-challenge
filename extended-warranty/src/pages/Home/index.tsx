@@ -14,16 +14,16 @@ export const Home = () => {
 
   const { cart } = useShoppingCart()
 
-  const converteToPriceCent = (products: Product[]) => {
+  const convertToPriceCent = (products: Product[], exchangeRate: number) => {
     return products.map((product) => {
-      const price = product.price.toString().replace('.', '');
-
+      const priceInReal = product.price * exchangeRate;
+      const priceInCent = priceInReal * 100;
       return {
         ...product,
-        price: parseInt(price)
-      }
-    })
-  }
+        price: priceInCent
+      };
+    });
+  };
 
   const fetchProducts = async () => {
     try {
@@ -31,7 +31,7 @@ export const Home = () => {
       const products = await data.json();
 
 
-      const newData = converteToPriceCent(products);
+      const newData = convertToPriceCent(products, 5.5);
       setProducts(newData);
 
     } catch (error) {

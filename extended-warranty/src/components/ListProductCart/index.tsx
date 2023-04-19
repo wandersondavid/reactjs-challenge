@@ -1,6 +1,7 @@
 import { Box, Button, Card, CardContent, CardMedia, IconButton, Rating, Typography, useTheme } from "@mui/material"
 import { Product } from "../../types/produts"
 import { ExtendedWarranty } from "../ExtendedWarranty";
+import { formatMoney } from "../../utils/money";
 
 
 
@@ -57,7 +58,7 @@ export const ListProductCart = (props: Props) => {
         </CardContent>
         <Box sx={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
           <Typography variant="subtitle1" color="text.secondary" component="div">
-            {(props.price * props.amount)}
+            {formatMoney((props.price * props.amount), 'BRL')}
           </Typography>
         </Box>
 

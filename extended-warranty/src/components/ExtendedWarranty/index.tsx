@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { Typography } from '@mui/material';
+import { formatMoney } from '../../utils/money';
 
 const marks = [
   {
@@ -56,7 +57,7 @@ export const ExtendedWarranty = (props: Props) => {
       100: (price: number, amount: number) => (price + (price * 0.3) * amount) / 3,
     }
 
-    const calculateWarranty = calculate[value] && calculate[value](price, amount);
+    const calculateWarranty = calculate[value] && +calculate[value](price, amount);
     setWarranty(calculateWarranty ?? 0)
     props.onChange(calculateWarranty ?? 0)
 
@@ -69,7 +70,7 @@ export const ExtendedWarranty = (props: Props) => {
 
   return (
     <>
-      <Typography>Garantia Estendida</Typography>
+      <Typography >Garantia Estendida</Typography>
       <Typography>Voce pode estender o tempo de garantia deste produto</Typography>
       <Box sx={{ maxWidth: 400, width: '100%' }}>
         <Slider
@@ -83,7 +84,7 @@ export const ExtendedWarranty = (props: Props) => {
       </Box>
 
       {value != 25 &&
-        <Typography>Por {warranty} a mais no valor do produto</Typography>
+        <Typography>Por {formatMoney(warranty, 'BRL')} a mais no valor do produto</Typography>
       }
     </>
   )

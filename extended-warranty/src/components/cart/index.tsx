@@ -3,6 +3,7 @@ import { Box, Card, CardContent, IconButton, Typography } from "@mui/material"
 import { ShoppingBasket } from "@mui/icons-material"
 import { Link } from "react-router-dom"
 import { Cart as CartProps} from "../../types/produts"
+import { formatMoney } from "../../utils/money"
 
 type Props = {
   cart: CartProps;
@@ -26,7 +27,7 @@ export const Cart = ({cart}: Props ) => {
         </IconButton>
 
         <Typography component="div" variant="h5" sx={{ fontSize: '1.25rem' }}>
-          {!!Object.keys(cart).length && Object.entries(cart).reduce((acc, [_, value]) => acc + value.amount * value.price, 0)}
+          {!!Object.keys(cart).length && formatMoney(Object.entries(cart).reduce((acc, [_, value]) => acc + value.amount * value.price, 0), 'BRL')}
           {!Object.keys(cart).length && 0}
         </Typography>
       </CardContent>
