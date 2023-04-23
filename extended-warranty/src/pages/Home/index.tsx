@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Product } from "../../types/produts";
 import { CardProduct } from "../../components/CardProduct";
 import { Card, CardContent, CircularProgress } from "@mui/material";
-import { Cart } from "../../components/cart";
+import { Cart } from "../../components/Cart";
 import { useShoppingCart } from "../../context/context";
 
 type Select = {
