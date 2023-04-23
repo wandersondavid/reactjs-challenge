@@ -42,7 +42,7 @@ export const CardProduct = (props: Props) => {
           image={props.image}
           alt="Live from space album cover"
         />
-        <CardContent sx={{ flex: '1 0 auto', width: `50%` }}>
+        <CardContent>
           <Typography component="div" variant="h5" sx={{ fontSize: '1.25rem' }}>
             {props.title}
           </Typography>

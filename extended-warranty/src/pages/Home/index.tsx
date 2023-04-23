@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Product } from "../../types/produts";
 import { CardProduct } from "../../components/CardProduct";
-import { Card, CardContent, CircularProgress } from "@mui/material";
+import { Box, Card, CardContent, CircularProgress } from "@mui/material";
 import { Cart } from "../../components/Cart";
 import { useShoppingCart } from "../../context/context";
 
@@ -69,14 +69,10 @@ export const Home = () => {
   }
 
   if (loading) {
-    return (<Card sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <CardContent>
-        <>
-          <CircularProgress />
-        </>
-        <p>Carregando...</p>
-      </CardContent>
-    </Card>)
+    return (<Box sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <CircularProgress />
+      <p>Carregando...</p>
+    </Box>)
   }
 
   return (
@@ -87,7 +83,7 @@ export const Home = () => {
         display: 'grid',
         gridTemplateColumns: '384px 384px 384px',
         padding: '16px 0px 20px 0px',
-        gridGap: 16,
+        gridGap: 14,
         '@media (max-width: 1200px)': {
           gridTemplateColumns: '384px 384px',
           justifyContent: 'center'

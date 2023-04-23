@@ -5,5 +5,4 @@ export const formatMoney = (amount: number, currency: string) => {
     style: 'currency',
     currency,
   }).format(amount/100);
- 
 }
