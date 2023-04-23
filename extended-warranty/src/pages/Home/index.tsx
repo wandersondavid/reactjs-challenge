@@ -11,7 +11,7 @@ type Select = {
 
 export const Home = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setSoading] = useState<Boolean>(true);
+  const [loading, setLoading] = useState<Boolean>(true);
 
   const { cart } = useShoppingCart()
 
@@ -34,9 +34,9 @@ export const Home = () => {
 
       const newData = convertToPriceCent(products, 5.5);
       setProducts(newData);
-      setSoading(false)
+      setLoading(false)
     } catch (error) {
-      setSoading(false)
+      setLoading(false)
       console.log(error);
     }
   }
