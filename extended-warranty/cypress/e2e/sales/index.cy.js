@@ -1,7 +1,6 @@
 describe("Sales", () => {
   it("Visit the sales page", () => {
     cy.visit("http://localhost:5173/");
-    // cy.get('h1').contains('Garantia Estendida')
   });
 
   it("Add product to cart", () => {
@@ -22,4 +21,20 @@ describe("Sales", () => {
     cy.get('a[href="/cart"]').click()
     cy.get('button').contains('Finalizar Compra')
   })
+
+  it("Add product to cart and remove product to cart", () => {
+    cy.visit("http://localhost:5173/");
+    cy.get('button').contains('+').click()
+    cy.get('button').contains('-').click()
+    cy.get('a[href="/cart"]').should('not.exist')
+  })
+
+  it("Remove product to cart and add product to cart", () => {
+    cy.visit("http://localhost:5173/");
+    cy.get('button').contains('+').click()
+    cy.get('a[href="/cart"]').click()
+    cy.get('button').contains('-').click()
+    cy.get('a[href="/"]').click()
+  })
+
 });
