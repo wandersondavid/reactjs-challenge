@@ -31,7 +31,7 @@ export const CardProduct = (props: Props) => {
         <img
           height={200}
           width={20}
-          className="h-52 w-full"
+          className="object-contain h-48 w-96"
           alt={props.title}
           src={props.image} />
       </Box>
