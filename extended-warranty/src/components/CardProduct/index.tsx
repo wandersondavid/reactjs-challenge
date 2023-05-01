@@ -14,12 +14,12 @@ export const CardProduct = (props: Props) => {
   const theme = useTheme();
 
 
-  const handleChangeProduct = (product:Product, type: string) => {
-    props.onChange(product, type )
+  const handleChangeProduct = (product: Product, type: string) => {
+    props.onChange(product, type)
   }
 
   return (
-    <Card  key={props.id} sx={{
+    <Card key={props.id} sx={{
       display: 'flex',
       flexDirection: 'column',
       maxHeight: 384, height: '100%',
@@ -70,18 +70,26 @@ export const CardProduct = (props: Props) => {
           </Box>
         </Box>
 
-        <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-          <Button onClick={()=>handleChangeProduct(props, 'remove')} variant="contained" >
-            -
-          </Button>
 
-          <Typography variant="subtitle1" color="text.secondary" component="div" sx={{ margin: '0 10px', minWidth: '50px', textAlign: 'center'}}>
-            {props.cart[props.id]?.amount || 0}
-          </Typography>
-          <Button onClick={()=>handleChangeProduct(props, 'add')} variant="contained">
-            +
+        {!props.cart[props.id]?.amount &&
+          <Button onClick={() => handleChangeProduct(props, 'add')} variant="contained" >
+            Comprar
           </Button>
-        </Box>
+        }
+        {!!props.cart[props.id]?.amount &&
+          <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+            <Button onClick={() => handleChangeProduct(props, 'remove')} variant="contained" >
+              -
+            </Button>
+
+            <Typography variant="subtitle1" color="text.secondary" className="w-20 text-center">
+              {props.cart[props.id]?.amount || 0}
+            </Typography>
+            <Button onClick={() => handleChangeProduct(props, 'add')} variant="contained">
+              +
+            </Button>
+          </Box>
+        }
       </Box>
 
     </Card>
