@@ -78,7 +78,7 @@ export const Home = () => {
   return (
     <main className="h-full mt-28">
       <Cart cart={cart} />
-      <Box className="grid gap-4 grid-cols-1 py-4 xl:grid-cols-3 md:grid-cols-2">
+      <Box className="grid gap-4 grid-cols-2 py-4 sm:grid-cols-3 md:grid-cols-4">
         {products?.map((product) => (<CardProduct
           key={product.id}
           id={product.id}

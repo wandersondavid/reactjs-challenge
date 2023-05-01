@@ -9,7 +9,7 @@ type Props = {
 
 export const Button = (props: Props) => {
   return (
-    <ButtonMui {...props} className={`${props?.className} w-full justify-center items-center m-0`}>
+    <ButtonMui {...props} className={`${props?.className} w-full justify-center items-center m-0 rounded-xl`}>
       {props.children}
     </ButtonMui>
   );
