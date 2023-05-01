@@ -1,6 +1,7 @@
-import { Box, Button, Card, CardContent, CardMedia, IconButton, Rating, Typography, useTheme } from "@mui/material"
+import { Box, Card, CardContent, CardMedia, IconButton, Rating, Typography, useTheme } from "@mui/material"
 import { Cart, Product } from "../../types/produts"
 import { formatMoney } from "../../utils/money";
+import { Button } from "../Button";
 
 
 type Props = {
@@ -70,14 +71,14 @@ export const CardProduct = (props: Props) => {
         </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-          <Button onClick={()=>handleChangeProduct(props, 'remove')} variant="contained" sx={{ width: '100%', marginTop: '20px', justifyContent: 'center', alignItems: 'center', margin: 0 }}>
+          <Button onClick={()=>handleChangeProduct(props, 'remove')} variant="contained" >
             -
           </Button>
 
-          <Typography variant="subtitle1" color="text.secondary" component="div" sx={{ margin: '0 10px', minWidth: '50px', textAlign: 'center' }}>
+          <Typography variant="subtitle1" color="text.secondary" component="div" sx={{ margin: '0 10px', minWidth: '50px', textAlign: 'center'}}>
             {props.cart[props.id]?.amount || 0}
           </Typography>
-          <Button onClick={()=>handleChangeProduct(props, 'add')} variant="contained" sx={{ width: '100%', marginTop: '20px', margin: 0 }}>
+          <Button onClick={()=>handleChangeProduct(props, 'add')} variant="contained">
             +
           </Button>
         </Box>
