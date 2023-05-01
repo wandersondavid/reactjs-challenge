@@ -77,9 +77,9 @@ export const CardProduct = (props: Props) => {
         {!props.cart[props.id]?.amount &&
           <Button
             onClick={() => handleChangeProduct(props, 'add')}
-            variant="outlined" 
-              className="font-bold"
-            >
+            variant="outlined"
+            className="font-bold"
+          >
             Comprar
           </Button>
         }
