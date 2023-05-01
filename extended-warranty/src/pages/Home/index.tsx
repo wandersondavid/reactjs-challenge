@@ -69,29 +69,16 @@ export const Home = () => {
   }
 
   if (loading) {
-    return (<Box sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    return (<Box className="flex justify-center items-center h-screen">
       <CircularProgress />
       <p>Carregando...</p>
     </Box>)
   }
 
   return (
-    <main style={{ height: '100%' }}>
-      <h1>Home</h1>
+    <main className="h-full mt-28">
       <Cart cart={cart} />
-      <CardContent sx={{
-        display: 'grid',
-        gridTemplateColumns: '384px 384px 384px',
-        padding: '16px 0px 20px 0px',
-        gridGap: 14,
-        '@media (max-width: 1200px)': {
-          gridTemplateColumns: '384px 384px',
-          justifyContent: 'center'
-        },
-        '@media (max-width: 840px)': {
-          gridTemplateColumns: '384px'
-        }
-      }}>
+      <Box className="grid gap-4 grid-cols-1 py-4 xl:grid-cols-3 md:grid-cols-2">
         {products?.map((product) => (<CardProduct
           key={product.id}
           id={product.id}
@@ -104,7 +91,7 @@ export const Home = () => {
           onChange={handleCart}
           cart={cart}
         />))}
-      </CardContent>
+      </Box>
     </main>
   )
 }
