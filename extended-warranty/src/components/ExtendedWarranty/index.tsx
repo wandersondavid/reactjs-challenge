@@ -41,7 +41,7 @@ export const ExtendedWarranty = (props: Props) => {
 
   const valuetext = (value: number) => {
     setValue(value);
-    if (value === 25) return 'Sem garantiad';
+    if (value === 25) return 'Sem garantia';
 
     return `${value} +  ano${value > 1 ? 's' : ''}`;
   }
