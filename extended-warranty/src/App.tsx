@@ -6,7 +6,6 @@ import {
 import "./index.css";
 import { Home } from "./pages/Home";
 import { Cart } from "./pages/Cart";
-import Player from "./pages/Player";
 
 
 function App() {
