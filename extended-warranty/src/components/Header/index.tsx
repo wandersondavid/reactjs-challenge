@@ -7,9 +7,9 @@ export const Header = () => {
   return (
     <HeaderStyled >
       <div>
-        <div>
-          <img src={logo} alt="Logo" />
-        </div>
+        <a href={'/'}>
+            <h1>Store</h1>
+        </a>
       </div>
     </HeaderStyled>
   );
