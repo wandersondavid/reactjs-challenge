@@ -3,7 +3,6 @@ import { go } from "../../../support/pages/home";
 describe("Cart", () => {
   const BASE_URL = "http://localhost:5173/";
 
-
   it("Add product to cart", () => {
     go(BASE_URL);
     cy.get("button").contains("Comprar").click();
