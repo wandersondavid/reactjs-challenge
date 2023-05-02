@@ -11,6 +11,8 @@ import { useState } from "react";
 import { Card } from "../../components/Card";
 import { Button } from "../../components/Button";
 
+import cartSvg from '../../assets/images/cart.svg'
+
 
 type Select = {
   [key: string]: (product: Product) => void;
@@ -67,11 +69,13 @@ export const Cart = () => {
       }
 
     }}>
-      {!Object.entries(cart).length && <Box sx={{ width: '100%' }}>
-        <Typography sx={{ width: '100%', textAlign: 'center' }}>Carrinho Vazio</Typography>
+      {!Object.entries(cart).length && <Box className="flex flex-col items-center justify-center h-full">
+
+        <img src={cartSvg} />
+        <Typography className="text-stone-500 py-4  ">Carrinho Vazio</Typography>
         <Link to="/">
           <Button variant="outlined" sx={{ width: '100%', marginTop: '16px' }}>
-            Continuar Comprando
+            Conferir produtos
           </Button>
 
         </Link>
