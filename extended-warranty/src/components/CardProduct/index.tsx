@@ -12,9 +12,6 @@ type Props = {
 
 export const CardProduct = (props: Props) => {
 
-  const theme = useTheme();
-
-
   const handleChangeProduct = (product: Product, type: string) => {
     props.onChange(product, type)
   }

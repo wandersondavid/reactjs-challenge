@@ -9,7 +9,7 @@ type Props = {
 
 export const Card = (props: Props) => {
   return (
-    <CardMui {...props} className={`${props?.className} w-full items-center m-0 shadow-xl rounded-xl`}>
+    <CardMui {...props} className={` items-center m-0 shadow-xl rounded-xl ${props?.className}`}>
       {props.children}
     </CardMui>
   )
