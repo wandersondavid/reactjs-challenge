@@ -42,7 +42,7 @@ export const Cart = () => {
     console.log('------------Cart------------')
     console.log(cart)
     console.log('------------Cart------------')
-    // chamar para api
+    // chamada para api
     setSubmit(true)
   }
 
@@ -72,9 +72,9 @@ export const Cart = () => {
       {!Object.entries(cart).length && <Box className="flex flex-col items-center justify-center h-full">
 
         <img src={cartSvg} />
-        <Typography className="text-stone-500 py-4  ">Carrinho Vazio</Typography>
+        <Typography className="text-stone-500 py-4">Carrinho Vazio</Typography>
         <Link to="/">
-          <Button variant="outlined" sx={{ width: '100%', marginTop: '16px' }}>
+          <Button variant="outlined" >
             Conferir produtos
           </Button>
 
