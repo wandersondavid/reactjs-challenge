@@ -19,10 +19,6 @@ function App() {
       path: "/cart",
       element: <Cart />,
     },
-    {
-      path: "/player",
-      element: <Player />,
-    },
   ]);
 
   return (
