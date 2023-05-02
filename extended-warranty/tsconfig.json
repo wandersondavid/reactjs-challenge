@@ -3,6 +3,7 @@
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "types": ["cypress", "node"],
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": false,
@@ -19,6 +20,6 @@
     "noImplicitThis": true,
     "strictNullChecks": true
   },
-  "include": ["src", "tailwind.config.js", "postcss.config.js"],
+  "include": ["src", "tailwind.config.js", "**/*.ts", "postcss.config.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
