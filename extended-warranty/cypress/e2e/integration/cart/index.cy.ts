@@ -39,7 +39,6 @@ describe("Cart", () => {
     cy.get('h3').contains("Garantia Estendida");
     cy.get('p').contains("Voce pode estender o tempo de garantia deste produto");
 
-
     cy.get('span[data-index="1"]').contains("1 ano").click();
     cy.get('span').contains("1 ano");
 
