@@ -64,7 +64,7 @@ export const ListProductCart = (props: Props) => {
               +
             </Button>
           </Box>
-          <Typography variant="subtitle1" color="text.secondary" component="span" className="text-center cursor-pointer hover:font-bold">
+          <Typography onClick={() => handleChangeProduct(props, 'delete')}variant="subtitle1" color="text.secondary" component="span" className="text-center cursor-pointer hover:font-bold">
             Remover
           </Typography>
         </Box>

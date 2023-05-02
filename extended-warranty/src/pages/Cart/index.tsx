@@ -17,7 +17,7 @@ type Select = {
 }
 
 export const Cart = () => {
-  const { cart, addProduct, removeProduct, extendedWarranty } = useShoppingCart();
+  const { cart, addProduct, removeProduct, extendedWarranty, deleteProduct } = useShoppingCart();
 
   const [submit, setSubmit] = useState<Boolean>(false)
 
@@ -25,6 +25,7 @@ export const Cart = () => {
     const select: Select = {
       'add': addProduct,
       'remove': (product: Product) => removeProduct(product.id),
+      'delete': (product: Product) => deleteProduct(product.id),
     }
     return select[type] && select[type](product);
   }
