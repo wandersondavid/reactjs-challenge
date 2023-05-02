@@ -12,10 +12,16 @@ import { Card } from "../../components/Card";
 import { Button } from "../../components/Button";
 
 import cartSvg from '../../assets/images/cart.svg'
-
+import { ExtendedWarranty } from "../../components/ExtendedWarranty";
 
 type Select = {
   [key: string]: (product: Product) => void;
+}
+
+type PropsExtendedWarranty = {
+  id: number;
+  price: number;
+  amount: number;
 }
 
 export const Cart = () => {
@@ -44,6 +50,15 @@ export const Cart = () => {
     console.log('------------Cart------------')
     // chamada para api
     setSubmit(true)
+  }
+
+  const contentExtendedWarranty = ({ id, price, amount }: PropsExtendedWarranty) => {
+    return (
+      <Box
+        className="flex flex-col justify-center items-center bg-gray-200 rounded-xl mt-4 p-4"
+      >
+        <ExtendedWarranty price={price} amount={amount} onChange={(value: number) => handleWarranty(id, value)} />
+      </Box>)
   }
 
   const sales = !!Object.entries(cart).length
@@ -92,8 +107,9 @@ export const Cart = () => {
               amount={value.amount}
               image={value.image}
               onChange={handleCart}
-              onChangeWarranty={handleWarranty}
-              extraWarranty={value.extraWarranty} />
+              extraWarranty={value.extraWarranty}>
+              {contentExtendedWarranty({ id: value.id, price: value.price, amount: value.amount })}
+            </ListProductCart>
           ))}
         </Card>
       </Box>

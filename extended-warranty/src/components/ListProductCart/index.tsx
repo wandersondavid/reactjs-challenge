@@ -13,18 +13,14 @@ type Props = {
   amount: number;
   id: number;
   extraWarranty?: number | null | undefined;
-  onChangeWarranty: (id: number, value: number) => void;
-}
+  children?: React.ReactNode;
+  }
 
 export const ListProductCart = (props: Props) => {
 
 
   const handleChangeProduct = (product: any, type: string) => {
     props.onChange(product, type)
-  }
-
-  const handleChangeWarranty = (id: number, value: number) => {
-    props.onChangeWarranty(id, value)
   }
 
   const extraWarranty = props.extraWarranty || 0
@@ -74,21 +70,7 @@ export const ListProductCart = (props: Props) => {
         </Typography>
       </Box>
 
-      <Box sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        alignItems: 'center',
-        backgroundColor: '#D3D9DF',
-        borderRadius: '8px',
-        marginTop: '16px',
-        padding: '16px',
-        '@media (max-width: 600px)': {
-          overflowX: 'scroll'
-        }
-      }}>
-        <ExtendedWarranty price={props.price} amount={props.amount} onChange={(value: number) => handleChangeWarranty(props.id, value)} />
-      </Box>
+      {props.children}
     </Box>
   )
 }
