@@ -1,4 +1,4 @@
-import { Box, Button, Card, Container, List, Typography, styled } from "@mui/material";
+import { Box, Container, List, Typography, styled } from "@mui/material";
 import { useShoppingCart } from "../../context/context";
 import { ListProductCart } from "../../components/ListProductCart";
 import { Product } from "../../types/produts";
@@ -8,12 +8,24 @@ import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import { useState } from "react";
 
+import { Card } from "../../components/Card";
+import { Button } from "../../components/Button";
+
+import cartSvg from '../../assets/images/cart.svg'
+import { ExtendedWarranty } from "../../components/ExtendedWarranty";
+
 type Select = {
   [key: string]: (product: Product) => void;
 }
 
+type PropsExtendedWarranty = {
+  id: number;
+  price: number;
+  amount: number;
+}
+
 export const Cart = () => {
-  const { cart, addProduct, removeProduct, extendedWarranty } = useShoppingCart();
+  const { cart, addProduct, removeProduct, extendedWarranty, deleteProduct } = useShoppingCart();
 
   const [submit, setSubmit] = useState<Boolean>(false)
 
@@ -21,6 +33,7 @@ export const Cart = () => {
     const select: Select = {
       'add': addProduct,
       'remove': (product: Product) => removeProduct(product.id),
+      'delete': (product: Product) => deleteProduct(product.id),
     }
     return select[type] && select[type](product);
   }
@@ -35,8 +48,17 @@ export const Cart = () => {
     console.log('------------Cart------------')
     console.log(cart)
     console.log('------------Cart------------')
-    // chamar para api
+    // chamada para api
     setSubmit(true)
+  }
+
+  const contentExtendedWarranty = ({ id, price, amount }: PropsExtendedWarranty) => {
+    return (
+      <Box
+        className="flex flex-col justify-center items-center bg-gray-200 rounded-xl mt-4 p-4"
+      >
+        <ExtendedWarranty price={price} amount={amount} onChange={(value: number) => handleWarranty(id, value)} />
+      </Box>)
   }
 
   const sales = !!Object.entries(cart).length
@@ -62,25 +84,20 @@ export const Cart = () => {
       }
 
     }}>
-      {!Object.entries(cart).length && <Box sx={{ width: '100%' }}>
-        <Typography sx={{ width: '100%', textAlign: 'center' }}>Carrinho Vazio</Typography>
+      {!Object.entries(cart).length && <Box className="flex flex-col items-center justify-center h-full">
+
+        <img src={cartSvg} />
+        <Typography className="text-stone-500 py-4">Carrinho Vazio</Typography>
         <Link to="/">
-          <Button variant="contained" sx={{ width: '100%', marginTop: '16px' }}>
-            Continuar Comprando
+          <Button variant="outlined" >
+            Conferir produtos
           </Button>
 
         </Link>
       </Box>}
       {!!Object.entries(cart).length && <Box sx={{ width: '100%' }}>
-        <Card sx={{
-          width: '96%',
-          padding: '16px',
-          '@media (max-width: 1000px)': {
-            width: 'initial',
-          }
-        }}>
+        <Card className="w-full p-4 flex flex-col gap-4">
           <Typography sx={{ width: '100%', textAlign: 'center' }}>Seus Produtos</Typography>
-
           {Object.entries(cart).map(([key, value]) => (
             <ListProductCart
               id={value.id}
@@ -90,22 +107,16 @@ export const Cart = () => {
               amount={value.amount}
               image={value.image}
               onChange={handleCart}
-              onChangeWarranty={handleWarranty}
-              extraWarranty={value.extraWarranty} />
+              extraWarranty={value.extraWarranty}>
+              {contentExtendedWarranty({ id: value.id, price: value.price, amount: value.amount })}
+            </ListProductCart>
           ))}
         </Card>
       </Box>
       }
 
-      {!!Object.entries(cart).length && <Box sx={{ width: '100%', boxSizing: 'border-box' }}>
-        <Card sx={{
-          width: '300px',
-          padding: '8px',
-          height: 'fit-content',
-          '@media (max-width: 1000px)': {
-            width: 'initial',
-          }
-        }}>
+      {!!Object.entries(cart).length &&
+        <Card className="max-w-[100%] w-full p-4 lg:max-w-lg lg:w-[32rem]"  >
           <Typography sx={{ width: '100%', textAlign: 'center' }}>Resumo</Typography>
           <Box sx={{ display: 'flex' }}>
             <Typography sx={{ width: '100%', textAlign: 'left' }}>Total:</Typography>
@@ -113,16 +124,15 @@ export const Cart = () => {
           </Box>
 
           <Link to="/">
-            <Button variant="contained" sx={{ width: '100%', marginTop: '16px' }}>
+            <Button className="mt-3" variant="outlined">
               Continuar Comprando
             </Button>
-
           </Link>
-          <Button variant="contained" disabled={!Object.entries(cart).length} onClick={handleSubmitDataSales} sx={{ width: '100%', marginTop: '16px' }}>
+          <Button variant="contained" className="mt-3" disabled={!Object.entries(cart).length} onClick={handleSubmitDataSales}>
             Finalizar Compra
           </Button>
         </Card>
-      </Box>}
+      }
 
       {(submit && !!Object.entries(cart).length) && <Stack sx={{ width: '100%', position: 'absolute', bottom: `50px`, left: 0 }} spacing={2}>
         <Alert severity="success">Compra realizada com sucesso!, verifique o console!</Alert>

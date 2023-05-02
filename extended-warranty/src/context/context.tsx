@@ -13,7 +13,7 @@ type ShoppingCartProps = {
 type ShoppingCartContextData = {
   addProduct: (product: Product) => void;
   removeProduct: (productId: number) => void;
-  deleteProduct: (productId: number, amount: number) => void;
+  deleteProduct: (productId: number) => void;
   extendedWarranty: (productId: number, value: number) => void;
   cart: Cart;
 }
@@ -90,9 +90,6 @@ export const ShoppingCartProvider = ({ children }: ShoppingCartProps) => {
       });
     }
   }
-
-
-
 
   return (
     <ShoppingCartContext.Provider value={{

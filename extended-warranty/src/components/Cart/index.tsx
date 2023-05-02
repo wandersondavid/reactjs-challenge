@@ -1,10 +1,11 @@
-import { Box, Card, CardContent, IconButton, Typography } from "@mui/material"
+import { Box, CardContent, IconButton, Typography } from "@mui/material"
 
 import { ShoppingBasket } from "@mui/icons-material"
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Link } from "react-router-dom"
 import { Cart as CartProps } from "../../types/produts"
 import { formatMoney } from "../../utils/money"
+import { Card } from "../Card";
 
 type Props = {
   cart: CartProps;
@@ -13,21 +14,11 @@ type Props = {
 export const Cart = ({ cart }: Props) => {
 
   return (
-    <Card sx={{
-      display: 'flex',
-      width: '100%',
-      padding: '20px',
-      boxSizing: 'border-box',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-    }}>
+    <Card className="flex justify-between px-4 h-28 items-center ">
+      <Box className="flex">
+        <ShoppingBasket className="text-zinc-800 " />
 
-      <CardContent sx={{ width: `200px`, display: 'flex', alignItems: 'center', backgroundColor: '#D2FEE1', borderRadius: '8px' }}>
-        <IconButton >
-          <ShoppingBasket sx={{ color: '#055F5B' }} />
-        </IconButton>
-
-        <Typography component="div" variant="h5" sx={{ fontSize: '1.25rem', textAlign: 'center', width: '100%', fontWeight: 700 }}>
+        <Typography component="span" variant="h5" className="text-center text-xl w-full font-bold pl-2">
 
           {!!Object.keys(cart).length &&
             formatMoney(Object.entries(cart).reduce((acc, [_, value]) => acc + value.amount * value.price, 0), 'BRL')
@@ -36,14 +27,14 @@ export const Cart = ({ cart }: Props) => {
           {!Object.keys(cart).length && formatMoney(0, 'BRL')}
 
         </Typography>
-      </CardContent>
+      </Box>
 
       {!!Object.keys(cart).length &&
-        <Box sx={{ display: 'flex', alignItems: 'center', fontSize: '1rem' }}>
-          <Link to={'/cart'} style={{ color: 'blue' }} >Finalizar compra</Link>
-          <IconButton >
-            <ArrowForwardIosIcon sx={{ color: '#055F5B' }} />
-          </IconButton>
+        <Box className="flex items-center text-base text-zinc-800 border p-2 border-zinc-500 rounded-xl" >
+          <Link to={'/cart'}>
+            Finalizar compra
+            <ArrowForwardIosIcon className="text-zinc-800 text-base" />
+          </Link>
         </Box>}
 
     </Card>

@@ -13,8 +13,8 @@ type Props = {
   amount: number;
   id: number;
   extraWarranty?: number | null | undefined;
-  onChangeWarranty: (id: number, value: number) => void;
-}
+  children?: React.ReactNode;
+  }
 
 export const ListProductCart = (props: Props) => {
 
@@ -23,85 +23,54 @@ export const ListProductCart = (props: Props) => {
     props.onChange(product, type)
   }
 
-  const handleChangeWarranty = (id: number, value: number) => {
-    props.onChangeWarranty(id, value)
-  }
-
   const extraWarranty = props.extraWarranty || 0
   const price = (props.price * props.amount) + extraWarranty
 
   return (
-    <Box sx={{
-      display: 'flex',
-      flexDirection: 'column',
-      width: '100%',
-      padding: '20px',
-      boxSizing: 'border-box',
-      justifyContent: 'space-between',
-      border: '1px solid #D3D9DF',
-      borderRadius: '8px',
-      marginBottom: '16px',
-      gap: '16px',
-    }}>
-
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <Box sx={{ display: 'flex' }}>
-          <CardMedia
-            component="img"
-            sx={{
-              width: '60px',
-              height: '60px',
-              aspectRatio: '4/4',
-              padding: '20px',
-              objectFit: 'contain'
-            }}
-            image={props.image}
+    <Box className="w-full flex flex-col	 border p-2 border-zinc-200 rounded-xl">
+      <Box className="flex-col items-center flex md:items-start md:justify-between md:flex-row">
+        <Box
+          className="h-18 flex justify-center items-center"
+        >
+          <img
+            height={50}
+            width={20}
+            className="object-contain h-20 w-20"
             alt={props.title}
-          />
-          <CardContent sx={{ flex: '1 0 auto', width: `50%` }}>
-            <Typography component="div" variant="h5" sx={{ fontSize: '1.25rem' }}>
-              {props.title}
-            </Typography>
-          </CardContent>
-
+            src={props.image} />
         </Box>
-        <Box>
-          <Box sx={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
-            <Typography variant="subtitle1" color="text.secondary" component="div">
-              {formatMoney(price, 'BRL')}
-            </Typography>
-          </Box>
 
-          <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-            <Button onClick={() => handleChangeProduct(props, 'remove')} variant="contained" sx={{ width: '100%', marginTop: '20px', justifyContent: 'center', alignItems: 'center', margin: 0 }}>
+        <Typography
+          component="h3"
+          variant="h5"
+          className="text-sm w-60 h-16 font-bold line-clamp-3">
+          {props.title}
+        </Typography>
+
+        <Box className="flex w-[160px] items-center flex-col" >
+          <Box className="flex w-[160px] justify-between">
+            <Button onClick={() => handleChangeProduct(props, 'remove')} variant="outlined">
               -
             </Button>
 
-            <Typography variant="subtitle1" color="text.secondary" component="div" sx={{ margin: '0 10px', minWidth: '50px', textAlign: 'center' }}>
+            <Typography variant="subtitle1" color="text.secondary" component="span" className="w-20 text-center">
               {props.amount || 0}
             </Typography>
-            <Button onClick={() => handleChangeProduct(props, 'add')} variant="contained" sx={{ width: '100%', marginTop: '20px', margin: 0 }}>
+            <Button onClick={() => handleChangeProduct(props, 'add')} variant="outlined" >
               +
             </Button>
           </Box>
+          <Typography onClick={() => handleChangeProduct(props, 'delete')}variant="subtitle1" color="text.secondary" component="span" className="text-center cursor-pointer hover:font-bold">
+            Remover
+          </Typography>
         </Box>
+
+        <Typography className="text-sm font-bold text-center" variant="subtitle1" color="text.secondary" component="span">
+          {formatMoney(price, 'BRL')}
+        </Typography>
       </Box>
 
-      <Box sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        alignItems: 'center',
-        backgroundColor: '#D3D9DF',
-        borderRadius: '8px',
-        marginTop: '16px',
-        padding: '16px',
-        '@media (max-width: 600px)': {
-          overflowX: 'scroll'
-        }
-      }}>
-        <ExtendedWarranty price={props.price} amount={props.amount} onChange={(value: number) => handleChangeWarranty(props.id, value)} />
-      </Box>
+      {props.children}
     </Box>
   )
 }
