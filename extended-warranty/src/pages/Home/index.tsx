@@ -81,7 +81,7 @@ export const Home = () => {
   if (loading) {
     return (<Box className="flex justify-center flex-col items-center h-screen">
       <img src={cartSvg} />
-      <h2 className="text-zinc-800 mt-6 capitalize font-bold">Carregando...</h2>
+      <p className="text-zinc-800 mt-6 capitalize font-bold">Carregando...</p>
     </Box>)
   }
 
