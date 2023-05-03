@@ -14,9 +14,9 @@ type Props = {
 export const Cart = ({ cart }: Props) => {
 
   return (
-    <Card className="flex justify-between px-4 h-28 items-center ">
+    <Card className="flex justify-between px-4 h-20 items-center ">
       <Box className="flex">
-        <ShoppingBasket className="text-zinc-800 " />
+        <ShoppingBasket className="text-zinc-800" />
 
         <Typography component="span" variant="h5" className="text-center text-xl w-full font-bold pl-2">
 
