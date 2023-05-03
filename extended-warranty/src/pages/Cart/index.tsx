@@ -123,7 +123,7 @@ export const Cart = () => {
       }
 
       {!!Object.entries(cart).length &&
-        <Card className="max-w-[100%] w-full p-4 lg:max-w-lg lg:w-[32rem] sticky t-[1rem]"  >
+        <Card className="max-w-[100%] w-full p-4 lg:max-w-lg lg:w-[32rem] sticky top-4"  >
           <Typography className="w-full text-center">Resumo</Typography>
           <Box className="flex">
             <Typography className="w-full text-left">Total:</Typography>
