@@ -26,7 +26,8 @@ export const ShoppingCartProvider = ({ children }: ShoppingCartProps) => {
   const [cart, setCart] = useState<Cart>(cartStorage ? JSON.parse(cartStorage) : {});
 
   useEffect(() => {
-    if (cartStorage && !Object.keys(cart).length) {
+    if (cartStorage&& !Object.keys(cartStorage).length && !Object.keys(cart).length) {
+      console.log('cartStorage', cartStorage)
       setCart({});
     }
 
