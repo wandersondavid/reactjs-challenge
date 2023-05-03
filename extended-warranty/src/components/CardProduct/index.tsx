@@ -47,18 +47,21 @@ export const CardProduct = (props: Props) => {
           className="text-sm line-clamp-2 ">
           {props.description}
         </Typography>
-        <Box className="flex">
+        <Box className="flex items-center">
           <Rating
             name="simple-controlled"
             value={props.rating.rate}
             color="secondary"
+            className="text-sm"
             readOnly
           />
 
           <Typography
             variant="subtitle1"
             color="text.secondary"
-            component="span">
+            component="span"
+            className="text-sm"
+            >
             ({props.rating.rate})
           </Typography>
         </Box>
