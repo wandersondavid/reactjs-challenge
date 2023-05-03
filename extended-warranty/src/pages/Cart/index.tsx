@@ -1,4 +1,4 @@
-import { Box, Container, List, Typography, styled } from "@mui/material";
+import { Box, Container, Divider, Typography } from "@mui/material";
 import { useShoppingCart } from "../../context/context";
 import { ListProductCart } from "../../components/ListProductCart";
 import { Product } from "../../types/produts";
@@ -64,7 +64,14 @@ export const Cart = () => {
   const sales = !!Object.entries(cart).length
     ? Object.entries(cart).reduce((acc, [_, value]) => {
       const extraWarranty = value.extraWarranty || 0
-      return (acc + (value.price * value.amount) + extraWarranty)
+      return (acc + (value.price * value.amount))
+    }, 0)
+    : 0;
+
+  const calulateExtendedWarranty = !!Object.entries(cart).length
+    ? Object.entries(cart).reduce((acc, [_, value]) => {
+      const extraWarranty = value.extraWarranty || 0
+      return acc + extraWarranty;
     }, 0)
     : 0;
 
@@ -117,12 +124,20 @@ export const Cart = () => {
 
       {!!Object.entries(cart).length &&
         <Card className="max-w-[100%] w-full p-4 lg:max-w-lg lg:w-[32rem] sticky t-[1rem]"  >
-          <Typography sx={{ width: '100%', textAlign: 'center' }}>Resumo</Typography>
-          <Box sx={{ display: 'flex' }}>
-            <Typography sx={{ width: '100%', textAlign: 'left' }}>Total:</Typography>
-            <Typography sx={{ width: '100%', textAlign: 'right' }}> {formatMoney(sales, 'BRL')}</Typography>
+          <Typography className="w-full text-center">Resumo</Typography>
+          <Box className="flex">
+            <Typography className="w-full text-left">Total:</Typography>
+            <Typography className="w-full text-right font-bold"> {formatMoney(sales, 'BRL')}</Typography>
           </Box>
-
+          <Box className="flex">
+            <Typography className="w-full text-left">Seguro:</Typography>
+            <Typography className="w-full text-right font-bold"> {formatMoney(calulateExtendedWarranty, 'BRL')}</Typography>
+          </Box>
+          <Divider className="my-3" />
+          <Box className="flex">
+            <Typography className="w-full text-left">SubTotal:</Typography>
+            <Typography className="w-full text-right font-bold"> {formatMoney(sales + calulateExtendedWarranty, 'BRL')}</Typography>
+          </Box>
           <Link to="/">
             <Button className="mt-3" variant="outlined">
               Continuar Comprando
