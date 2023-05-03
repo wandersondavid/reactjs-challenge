@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Product } from "../../types/produts";
 import { CardProduct } from "../../components/CardProduct";
-import { Box, Card, CardContent, CircularProgress, Divider } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import { Cart } from "../../components/Cart";
 import { useShoppingCart } from "../../context/context";
 
+import cartSvg from '../../assets/images/cart.svg'
 type Select = {
   [key: string]: (product: Product) => void;
 }
@@ -78,9 +79,9 @@ export const Home = () => {
   }
 
   if (loading) {
-    return (<Box className="flex justify-center items-center h-screen">
-      <CircularProgress />
-      <p>Carregando...</p>
+    return (<Box className="flex justify-center flex-col items-center h-screen">
+      <img src={cartSvg} />
+      <h2 className="text-zinc-800 mt-6 capitalize font-bold">Carregando...</h2>
     </Box>)
   }
 
