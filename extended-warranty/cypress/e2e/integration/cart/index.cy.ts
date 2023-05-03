@@ -43,4 +43,36 @@ describe("Cart", () => {
 
   })
 
+  it("Verify has extended warranty and add 2 year", () => {
+
+    go(BASE_URL);
+    cy.get("button").contains("Comprar").click();
+    cy.get('a[href="/cart"]').contains("Finalizar compra").click();
+    cy.get("button").contains("+").click();
+    cy.get('span').contains("2");
+
+    cy.get('h3').contains("Garantia Estendida");
+    cy.get('p').contains("Voce pode estender o tempo de garantia deste produto");
+
+    cy.get('span[data-index="2"]').contains("2 ano").click();
+    cy.get('span').contains("2 ano");
+
+  })
+
+  it("Verify has extended warranty and add 3 year", () => {
+
+    go(BASE_URL);
+    cy.get("button").contains("Comprar").click();
+    cy.get('a[href="/cart"]').contains("Finalizar compra").click();
+    cy.get("button").contains("+").click();
+    cy.get('span').contains("2");
+
+    cy.get('h3').contains("Garantia Estendida");
+    cy.get('p').contains("Voce pode estender o tempo de garantia deste produto");
+
+    cy.get('span[data-index="3"]').contains("3 ano").click();
+    cy.get('span').contains("3 ano");
+
+  })
+
 })
