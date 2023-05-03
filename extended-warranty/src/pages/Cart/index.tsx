@@ -116,7 +116,7 @@ export const Cart = () => {
       }
 
       {!!Object.entries(cart).length &&
-        <Card className="max-w-[100%] w-full p-4 lg:max-w-lg lg:w-[32rem]"  >
+        <Card className="max-w-[100%] w-full p-4 lg:max-w-lg lg:w-[32rem] sticky t-[1rem]"  >
           <Typography sx={{ width: '100%', textAlign: 'center' }}>Resumo</Typography>
           <Box sx={{ display: 'flex' }}>
             <Typography sx={{ width: '100%', textAlign: 'left' }}>Total:</Typography>
