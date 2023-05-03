@@ -55,12 +55,13 @@ describe("Sales", () => {
     cy.get("p").contains("Carrinho Vazio").should("exist");
   });
 
-  it("test",()=>{
+  it("When reloading the page, the cart should be retained", () => {
     go(BASE_URL);
     cy.get("button").contains("Comprar").click();
     cy.wait(1000);
     cy.reload();
     cy.get("p").contains("Carregando...").should("exist");
-    cy.get("h6").contains('1')
+    cy.get("h6").contains('1').should("exist");
+    cy.get("span").should('not.equal', 'R$ 0,00');
   });
 });
