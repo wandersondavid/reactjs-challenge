@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Product } from "../../types/produts";
 import { CardProduct } from "../../components/CardProduct";
 import { Box, Divider } from "@mui/material";
@@ -90,9 +90,9 @@ export const Home = () => {
       <Cart cart={cart} />
 
       {Object.entries(products).map(([key, value], index) => (
-        <>
-          <h2 className="text-zinc-800 mt-6 capitalize font-bold">{key}</h2>
-          <Box className="grid gap-4 grid-cols-2 py-4 sm:grid-cols-3 md:grid-cols-4">
+        <React.Fragment key={key}>
+          <h2 key={`${key}-${index}`} className="text-zinc-800 mt-6 capitalize font-bold">{key}</h2>
+          <Box key={key} className="grid gap-4 grid-cols-2 py-4 sm:grid-cols-3 md:grid-cols-4">
             {value?.map((product) => (<CardProduct
               key={product.id}
               id={product.id}
@@ -107,7 +107,7 @@ export const Home = () => {
             />))}
           </Box>
           {Object.entries(products).length - 1 !== index && <Divider className="my-4" />}
-        </>
+        </React.Fragment >
       ))
       }
     </main>
