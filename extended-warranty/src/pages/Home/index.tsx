@@ -9,8 +9,12 @@ type Select = {
   [key: string]: (product: Product) => void;
 }
 
+type ProductGroup = {
+  [key: string]: Product[];
+}
+
 export const Home = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductGroup>({});
   const [loading, setLoading] = useState<Boolean>(true);
 
   const { cart } = useShoppingCart()
@@ -26,6 +30,18 @@ export const Home = () => {
     });
   };
 
+  const groupByCategory = (products: Product[]) => {
+    return products.reduce((acc, product) => {
+      const category = product.category;
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(product);
+      return acc;
+    }, {} as { [key: string]: Product[] });
+  };
+
+
   const fetchProducts = async () => {
     try {
       const data = await fetch('https://fakestoreapi.com/products');
@@ -33,7 +49,10 @@ export const Home = () => {
 
 
       const newData = convertToPriceCent(products, 5.5);
-      setProducts(newData);
+
+      const groupCategory = groupByCategory(newData);
+
+      setProducts(groupCategory);
       setLoading(false)
     } catch (error) {
       setLoading(false)
@@ -41,20 +60,10 @@ export const Home = () => {
     }
   }
 
-  const fetchCategories = async () => {
-    try {
-      const data = await fetch('https://fakestoreapi.com/products/categories');
-      const categories = await data.json();
-
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   useEffect(() => {
     fetchProducts();
 
-    fetchCategories();
   }, []);
 
   const { addProduct, removeProduct } = useShoppingCart();
@@ -78,20 +87,27 @@ export const Home = () => {
   return (
     <main className="h-full mt-28">
       <Cart cart={cart} />
-      <Box className="grid gap-4 grid-cols-2 py-4 sm:grid-cols-3 md:grid-cols-4">
-        {products?.map((product) => (<CardProduct
-          key={product.id}
-          id={product.id}
-          title={product.title}
-          price={product.price}
-          description={product.description}
-          category={product.category}
-          image={product.image}
-          rating={product.rating}
-          onChange={handleCart}
-          cart={cart}
-        />))}
-      </Box>
+
+      {Object.entries(products).map(([key, value]) => (
+        <>
+          <h2 className="text-zinc-800 mt-6 capitalize">{key}</h2>
+          <Box className="grid gap-4 grid-cols-2 py-4 sm:grid-cols-3 md:grid-cols-4">
+            {value?.map((product) => (<CardProduct
+              key={product.id}
+              id={product.id}
+              title={product.title}
+              price={product.price}
+              description={product.description}
+              category={product.category}
+              image={product.image}
+              rating={product.rating}
+              onChange={handleCart}
+              cart={cart}
+            />))}
+          </Box>
+        </>
+      ))
+      }
     </main>
   )
 }
