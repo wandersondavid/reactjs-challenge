@@ -3,7 +3,7 @@ import { useShoppingCart } from "../../context/context";
 import { ListProductCart } from "../../components/ListProductCart";
 import { Product } from "../../types/produts";
 import { formatMoney } from "../../utils/money";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import { useState } from "react";
@@ -28,6 +28,7 @@ export const Cart = () => {
   const { cart, addProduct, removeProduct, extendedWarranty, deleteProduct } = useShoppingCart();
 
   const [submit, setSubmit] = useState<Boolean>(false)
+  const navigate = useNavigate();
 
   const handleCart = (product: Product, type: string) => {
     const select: Select = {
@@ -48,8 +49,11 @@ export const Cart = () => {
     console.log('------------Cart------------')
     console.log(cart)
     console.log('------------Cart------------')
+
+    navigate('/buying');
     // chamada para api
     setSubmit(true)
+
   }
 
   const contentExtendedWarranty = ({ id, price, amount }: PropsExtendedWarranty) => {
@@ -140,11 +144,11 @@ export const Cart = () => {
           </Box>
           <Link to="/">
             <Button className="mt-3" variant="outlined">
-              Continuar Comprando
+              Adicionar mais produtos
             </Button>
           </Link>
           <Button variant="contained" className="mt-3" disabled={!Object.entries(cart).length} onClick={handleSubmitDataSales}>
-            Finalizar Compra
+            Continuar
           </Button>
         </Card>
       }

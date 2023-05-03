@@ -6,6 +6,7 @@ import {
 import "./index.css";
 import { Home } from "./pages/Home";
 import { Cart } from "./pages/Cart";
+import { Buying } from "./pages/Buying";
 
 
 function App() {
@@ -17,6 +18,10 @@ function App() {
     {
       path: "/cart",
       element: <Cart />,
+    },
+    {
+      path: "/buying",
+      element: <Buying />,
     },
   ]);
 
