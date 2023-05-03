@@ -27,7 +27,7 @@ export const ShoppingCartProvider = ({ children }: ShoppingCartProps) => {
 
   useEffect(() => {
     if (cartStorage && !Object.keys(cart).length) {
-      setCart(JSON.parse(cartStorage));
+      setCart({});
     }
 
     localStorage.setItem('@shopping-cart', JSON.stringify(cart));
