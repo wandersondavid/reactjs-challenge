@@ -3,6 +3,7 @@ import React, {
   useContext,
   ReactNode,
   useState,
+  useEffect,
 } from 'react';
 import { Cart, Product } from '../types/produts';
 
@@ -21,8 +22,17 @@ type ShoppingCartContextData = {
 export const ShoppingCartContext = createContext({} as ShoppingCartContextData);
 
 export const ShoppingCartProvider = ({ children }: ShoppingCartProps) => {
+  const cartStorage = localStorage.getItem('@shopping-cart');
+  const [cart, setCart] = useState<Cart>(cartStorage ? JSON.parse(cartStorage) : {});
 
-  const [cart, setCart] = useState<Cart>({});
+  useEffect(() => {
+    if (cartStorage && !Object.keys(cart).length) {
+      setCart(JSON.parse(cartStorage));
+    }
+
+    localStorage.setItem('@shopping-cart', JSON.stringify(cart));
+
+  }, [cart])
 
   const addProduct = (product: Product) => {
 
