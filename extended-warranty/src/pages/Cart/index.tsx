@@ -52,7 +52,7 @@ export const Cart = () => {
 
     navigate('/buying');
     // chamada para api
-    setSubmit(true)
+    setSubmit(true);
 
   }
 

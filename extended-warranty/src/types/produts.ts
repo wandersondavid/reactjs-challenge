@@ -9,7 +9,7 @@ export type Product = {
   price: number;
   description: string;
   category: string;
-  image: string;
+  images: string;
   rating: rating;
 }
 
@@ -18,7 +18,7 @@ export type Cart = {
     id: number;
     title: string;
     price: number;
-    image: string;
+    images: string;
     amount: number;
     extraWarranty?: number;
   };

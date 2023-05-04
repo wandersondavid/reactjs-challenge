@@ -45,13 +45,10 @@ export const Home = () => {
 
   const fetchProducts = async () => {
     try {
-      const data = await fetch('https://fakestoreapi.com/products');
+      const data = await fetch('http://localhost:3333/products');
       const products = await data.json();
 
-
-      const newData = convertToPriceCent(products, 5.5);
-
-      const groupCategory = groupByCategory(newData);
+      const groupCategory = groupByCategory(products);
 
       setProducts(groupCategory);
       setLoading(false)
@@ -100,7 +97,7 @@ export const Home = () => {
               price={product.price}
               description={product.description}
               category={product.category}
-              image={product.image}
+              images={product.images}
               rating={product.rating}
               onChange={handleCart}
               cart={cart}
