@@ -1,6 +1,6 @@
 import { Box, Container, Divider, Typography } from "@mui/material";
 import { Card } from "../../components/Card"
-import { ListProductCart } from "../../components/ListProductCart";
+
 import { useShoppingCart } from "../../context/context";
 import { formatMoney } from "../../utils/money";
 import { Button } from "../../components/Button";
@@ -71,7 +71,7 @@ export const Buying = () => {
                 width={20}
                 className="object-contain h-20 w-20"
                 alt={value.title}
-                src={value.image} />
+                src={value.images} />
               <Typography
                 component="h3"
                 variant="h5"

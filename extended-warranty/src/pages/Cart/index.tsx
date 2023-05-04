@@ -116,7 +116,7 @@ export const Cart = () => {
               title={value.title}
               price={value.price}
               amount={value.amount}
-              image={value.image}
+              images={value.images}
               onChange={handleCart}
               extraWarranty={value.extraWarranty}>
               {contentExtendedWarranty({ id: value.id, price: value.price, amount: value.amount })}
