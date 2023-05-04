@@ -20,17 +20,6 @@ export const Home = () => {
 
   const { cart } = useShoppingCart()
 
-  const convertToPriceCent = (products: Product[], exchangeRate: number) => {
-    return products.map((product) => {
-      const priceInReal = product.price * exchangeRate;
-      const priceInCent = priceInReal * 100;
-      return {
-        ...product,
-        price: priceInCent
-      };
-    });
-  };
-
   const groupByCategory = (products: Product[]) => {
     return products.reduce((acc, product) => {
       const category = product.category;
