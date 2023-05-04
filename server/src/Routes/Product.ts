@@ -83,6 +83,8 @@ export async function productRoutes(fastify: FastifyInstance) {
       });
 
       const joinProductPrice = product.data.map((item: any) => {
+
+        if(!item?.metadata?.category) return null;
         return {
           id: item.id,
           title: item.name,
@@ -99,7 +101,8 @@ export async function productRoutes(fastify: FastifyInstance) {
         }
       });
 
-      return reply.send(joinProductPrice);
+
+      return reply.send(joinProductPrice.filter((Boolean)));
 
     } catch (error: any) {
       throw new Error(error)
@@ -355,9 +358,6 @@ export async function productRoutes(fastify: FastifyInstance) {
 
 
     for (const item of fakeProducts) {
-
-
-
       const product = await stripe.products.create({
         name: item.title,
         description: item.description,
