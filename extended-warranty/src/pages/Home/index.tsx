@@ -6,6 +6,7 @@ import { Cart } from "../../components/Cart";
 import { useShoppingCart } from "../../context/context";
 
 import cartSvg from '../../assets/images/cart.svg'
+import { Products } from "../../../service";
 type Select = {
   [key: string]: (product: Product) => void;
 }
@@ -34,11 +35,8 @@ export const Home = () => {
 
   const fetchProducts = async () => {
     try {
-      const data = await fetch('http://localhost:3333/products');
-      const products = await data.json();
-
-      const groupCategory = groupByCategory(products);
-
+      const data = await Products();
+      const groupCategory = groupByCategory(data);
       setProducts(groupCategory);
       setLoading(false)
     } catch (error) {
@@ -46,7 +44,6 @@ export const Home = () => {
       console.log(error);
     }
   }
-
 
   useEffect(() => {
     fetchProducts();

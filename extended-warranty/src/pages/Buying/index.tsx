@@ -5,6 +5,7 @@ import { useShoppingCart } from "../../context/context";
 import { formatMoney } from "../../utils/money";
 import { Button } from "../../components/Button";
 import { Link } from "react-router-dom";
+import { Checkout } from "../../../service";
 
 export const Buying = () => {
   const { cart } = useShoppingCart();
@@ -22,9 +23,25 @@ export const Buying = () => {
     }, 0)
     : 0;
 
-    const quantidadeTotal = Object.entries(cart).reduce((acc, [_, value]) => {
-      return acc + value.amount;
-    }, 0);
+  const quantidadeTotal = Object.entries(cart).reduce((acc, [_, value]) => {
+    return acc + value.amount;
+  }, 0);
+
+  const postData = async () => {
+    const data = Object.entries(cart).map(([_, value]) => {
+      return {
+        price: value.id,
+        quantity: value.amount,
+      }
+    });
+
+    const response = await Checkout(data);
+    console.log(response);
+    window.location.href = response.url;
+    return
+
+
+  }
 
   return (
     <Container className="flex mt-40 gap-4 items-start">
@@ -130,7 +147,7 @@ export const Buying = () => {
               Voltar
             </Button>
           </Link>
-          <Button variant="contained" className="mt-3" disabled={!Object.entries(cart).length}>
+          <Button variant="contained" className="mt-3" disabled={!Object.entries(cart).length} onClick={postData}>
             Finalizar Compra
           </Button>
         </Card>
