@@ -19,7 +19,6 @@ async function api() {
     origin: true,
   })
 
-
   await fastify.register(checkoutRoutes)
   await fastify.register(productRoutes)
 
