@@ -36,7 +36,7 @@ export const ShoppingCartProvider = ({ children }: ShoppingCartProps) => {
 
   const addProduct = (product: Product) => {
 
-    const { id, title, price, image } = product;
+    const { id, title, price, images } = product;
     const cartProduct = cart[id];
 
     if (!cartProduct) {
@@ -46,7 +46,7 @@ export const ShoppingCartProvider = ({ children }: ShoppingCartProps) => {
           id,
           title,
           price,
-          image,
+          images,
           amount: 1
         }
       });

@@ -29,7 +29,6 @@ describe("Cart", () => {
   });
 
   it("Verify has extended warranty and add 1 year", () => {
-
     cy.get("button").contains("Comprar").click();
     cy.get('a[href="/cart"]').contains("Finalizar compra").click();
     cy.get("button").contains("+").click();
@@ -42,7 +41,6 @@ describe("Cart", () => {
   })
 
   it("Verify has extended warranty and add 2 year", () => {
-
     cy.get("button").contains("Comprar").click();
     cy.get('a[href="/cart"]').contains("Finalizar compra").click();
     cy.get("button").contains("+").click();

@@ -7,7 +7,7 @@ import { formatMoney } from "../../utils/money";
 
 type Props = {
   onChange: (product: Product, type: string) => void;
-  image: string;
+  images: string;
   title: string;
   price: number;
   amount: number;
@@ -37,7 +37,7 @@ export const ListProductCart = (props: Props) => {
             width={20}
             className="object-contain h-20 w-20"
             alt={props.title}
-            src={props.image} />
+            src={props.images} />
         </Box>
 
         <Typography

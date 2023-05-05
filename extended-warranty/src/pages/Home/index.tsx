@@ -6,6 +6,7 @@ import { Cart } from "../../components/Cart";
 import { useShoppingCart } from "../../context/context";
 
 import cartSvg from '../../assets/images/cart.svg'
+import { Products } from "../../../service";
 type Select = {
   [key: string]: (product: Product) => void;
 }
@@ -19,17 +20,6 @@ export const Home = () => {
   const [loading, setLoading] = useState<Boolean>(true);
 
   const { cart } = useShoppingCart()
-
-  const convertToPriceCent = (products: Product[], exchangeRate: number) => {
-    return products.map((product) => {
-      const priceInReal = product.price * exchangeRate;
-      const priceInCent = priceInReal * 100;
-      return {
-        ...product,
-        price: priceInCent
-      };
-    });
-  };
 
   const groupByCategory = (products: Product[]) => {
     return products.reduce((acc, product) => {
@@ -45,14 +35,8 @@ export const Home = () => {
 
   const fetchProducts = async () => {
     try {
-      const data = await fetch('https://fakestoreapi.com/products');
-      const products = await data.json();
-
-
-      const newData = convertToPriceCent(products, 5.5);
-
-      const groupCategory = groupByCategory(newData);
-
+      const data = await Products();
+      const groupCategory = groupByCategory(data);
       setProducts(groupCategory);
       setLoading(false)
     } catch (error) {
@@ -60,7 +44,6 @@ export const Home = () => {
       console.log(error);
     }
   }
-
 
   useEffect(() => {
     fetchProducts();
@@ -100,7 +83,7 @@ export const Home = () => {
               price={product.price}
               description={product.description}
               category={product.category}
-              image={product.image}
+              images={product.images}
               rating={product.rating}
               onChange={handleCart}
               cart={cart}

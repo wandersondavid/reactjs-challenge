@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc --build",
+    "start": "node dist/src/server.js",
+    "start:prod": "pnpm build && pm2 start dist/src/server.js --name store"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "18.14.3",
+    "tsx": "^3.12.3",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@fastify/cors": "^8.2.0",
+    "dotenv": "^16.0.3",
+    "fastify": "^4.13.0",
+    "node-fetch": "^3.3.0",
+    "stripe": "^12.3.0",
+    "zod": "^3.20.6"
+  }
+}
