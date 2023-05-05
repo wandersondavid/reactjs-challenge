@@ -11,16 +11,17 @@ type product = {
   quantity: number
 }
 
-type body = {
-  line_items: product[],
-}
+
 
 export async function checkoutRoutes(fastify: FastifyInstance) {
   fastify.post('/create-checkout-session', async (request, reply) => {
 
-    const body = request.body as body
 
-    if(!body.line_items.length) throw new Error('No line items provided')
+    console.log(request.body)
+    const body = request.body as product[]
+
+
+    if(!body.length) throw new Error('No line items provided')
 
     try {
 

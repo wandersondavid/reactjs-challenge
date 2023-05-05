@@ -76,9 +76,6 @@ export async function productRoutes(fastify: FastifyInstance) {
   });
 
   fastify.get('/products', async (request, reply) => {
-const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
-
-    console.log(">>>>>>>>>>>>>>>", STRIPE_SECRET_KEY);
 
     try {
       const product = await stripe.products.list({
