@@ -1,6 +1,6 @@
 
 
-const BASE_URL = 'http://localhost:3333'
+const BASE_URL = 'https://api.plushere.com.br'
 export const Products = async () => {
   const products = await fetch(`${BASE_URL}/products`)
   const data = await products.json()
