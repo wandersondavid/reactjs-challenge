@@ -1,6 +1,10 @@
 import { FastifyInstance } from "fastify"
 import { array, boolean, number, string, z } from "zod";
-const stripe = require('stripe')('');
+import 'dotenv/config'
+
+const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
+
+const stripe = require('stripe')(STRIPE_SECRET_KEY);
 
 type Price = {
   unit_amount: number;
@@ -72,6 +76,9 @@ export async function productRoutes(fastify: FastifyInstance) {
   });
 
   fastify.get('/products', async (request, reply) => {
+const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
+
+    console.log(">>>>>>>>>>>>>>>", STRIPE_SECRET_KEY);
 
     try {
       const product = await stripe.products.list({
@@ -86,7 +93,7 @@ export async function productRoutes(fastify: FastifyInstance) {
 
         if(!item?.metadata?.category) return null;
         return {
-          id: item.id,
+          id: price.data.find((price: any) => price.product === item.id)?.id,
           title: item.name,
           description: item.description,
           images: item.images,
@@ -100,7 +107,6 @@ export async function productRoutes(fastify: FastifyInstance) {
           price: price.data.find((price: any) => price.product === item.id)?.unit_amount ?? 0,
         }
       });
-
 
       return reply.send(joinProductPrice.filter((Boolean)));
 

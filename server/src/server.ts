@@ -3,10 +3,14 @@ import cors from "@fastify/cors";
 
 import { checkoutRoutes } from "./Routes/Checkout"
 import { productRoutes } from "./Routes/Product"
-import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
-dotenv.config()
+import * as dotenv from 'dotenv'
 
-async function bootstrap() {
+dotenv.config()
+import 'dotenv/config'
+
+const PORT = process.env.PORT
+
+async function api() {
   const fastify = Fastify({
     logger: true,
   })
@@ -20,7 +24,7 @@ async function bootstrap() {
   await fastify.register(productRoutes)
 
 
-  await fastify.listen({ port: 3333, host: '0.0.0.0' })
+  await fastify.listen({ port: PORT, host: '0.0.0.0' })
 }
 
-bootstrap()
+api()

@@ -1,7 +1,11 @@
 import { FastifyInstance } from "fastify"
-const stripe = require('stripe')('');
+import 'dotenv/config'
 
-const YOUR_DOMAIN = "http://localhost:5173"
+const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY
+const FRONT_DOMAIN = process.env.FRONT_DOMAIN
+
+const stripe = require('stripe')(STRIPE_SECRET_KEY);
+
 
 export async function checkoutRoutes(fastify: FastifyInstance) {
   fastify.post('/create-checkout-session', async (request, reply) => {
@@ -13,8 +17,8 @@ export async function checkoutRoutes(fastify: FastifyInstance) {
       const session = await stripe.checkout.sessions.create({
         line_items: body,
         mode: 'payment',
-        success_url: `${YOUR_DOMAIN}/success`,
-        cancel_url: `${YOUR_DOMAIN}/buying`,
+        success_url: `${FRONT_DOMAIN}/success`,
+        cancel_url: `${FRONT_DOMAIN}/buying`,
       });
 
       reply.send({url: session.url});
