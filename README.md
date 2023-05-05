@@ -39,6 +39,7 @@ Para executar o projeto com a integração com API Stripe, siga os passos abaixo
 Certifique-se de ter configurado corretamente as variáveis de ambiente no arquivo .env
 Acesse a pasta ``server`` através do terminal
 Execute o comando pnpm install para instalar as dependências do projeto
-Em seguida, execute o comando pnpm dev para iniciar o servidor de desenvolvimento
+Em seguida, execute o comando pnpm dev para iniciar o servidor de desenvolvimento em seguida execute o endpoint ``http://localhost:3333/migration`` para cadastrar os produtos no stripe.
+
 Com a integração com a API Stripe configurada, o projeto será capaz de processar pagamentos por meio da plataforma de pagamentos Stripe.
 
