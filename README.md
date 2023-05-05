@@ -14,7 +14,7 @@ Para gerar a build do projeto, siga os passos abaixo:
  - Execute o comando ```pnpm build```
  - Os arquivos da build serão gerados na pasta dist/ na raiz do projeto
 
-### Server com a Integração com API Stripe
+## Server com a Integração com API Stripe
 O projeto ReactJS Challenge possui integração com a API Stripe para processamento de pagamentos para teste. Para utilizar essa integração, é necessário incluir a chave secreta do Stripe em um arquivo .env.
 
 Para isso, siga os passos abaixo:
