@@ -7,7 +7,7 @@ describe("Sales", () => {
 
   beforeEach(()=>(
     go(BASE_URL)
-  ))
+  ));
 
   it("Visit the sales page", () => {
     cy.get('span').contains("R$ 0,00");

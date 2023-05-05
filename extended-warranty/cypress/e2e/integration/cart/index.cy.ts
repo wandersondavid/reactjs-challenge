@@ -69,11 +69,13 @@ describe("Cart", () => {
     cy.get("button").contains("Comprar").click();
     cy.get('a[href="/cart"]').contains("Finalizar compra").click();
     cy.get("button").contains("+").click();
-    cy.wait(1000);
-    cy.reload();
-    cy.get("p").contains("Seus Produtos").should("exist");
-    cy.get("p").contains("Resumo").should("exist");
-    cy.get("span").contains('2').should("exist");
+
+    cy.reload().then(() => {
+      cy.get("p").contains("Seus Produtos").should("exist");
+      cy.get("p").contains("Resumo").should("exist");
+      cy.get("span").contains('2').should("exist");
+    });
+
   });
 
   it("To page buying", () => {
