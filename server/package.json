@@ -5,15 +5,13 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsx build src/server.ts",
-    "start": "tsx start src/server.ts"
+    "build": "tsc --build",
+    "start": "node dist/src/server.js",
+    "start:prod": "pnpm build && pm2 start dist/src/server.js --name store"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "prisma": {
-    "seed": "tsx prisma/seed.ts"
-  },
   "devDependencies": {
     "@types/node": "18.14.3",
     "tsx": "^3.12.3",
