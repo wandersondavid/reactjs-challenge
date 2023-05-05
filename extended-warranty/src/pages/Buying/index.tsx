@@ -148,7 +148,7 @@ export const Buying = () => {
             </Button>
           </Link>
           <Button variant="contained" className="mt-3" disabled={!Object.entries(cart).length} onClick={postData}>
-            Finalizar Compra
+            Ir para checkout
           </Button>
         </Card>
       }
