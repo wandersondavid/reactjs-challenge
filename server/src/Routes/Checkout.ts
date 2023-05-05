@@ -16,8 +16,6 @@ type product = {
 export async function checkoutRoutes(fastify: FastifyInstance) {
   fastify.post('/create-checkout-session', async (request, reply) => {
 
-
-    console.log(request.body)
     const body = request.body as product[]
 
 
