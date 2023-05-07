@@ -52,10 +52,10 @@ export const Buying = () => {
   }
 
   return (
-    <Container className="flex mt-40 gap-4 items-start">
+    <Container className="flex items-start justify-center mt-24 p-4 gap-4 max-lg:flex max-lg:flex-col-reverse max-lg:w-full">
       <Card className="p-4 w-full ">
         <h2 className="w-full text-center ">Seus Produtos</h2>
-        <Box className="grid grid-cols-5 mt-4">
+        <Box className="grid grid-cols-5 mt-4 max-sm:grid-cols-4 max-[460px]:grid-cols-3">
           <Typography
             component="h3"
             variant="h5"
@@ -71,13 +71,13 @@ export const Buying = () => {
           <Typography
             component="h3"
             variant="h5"
-            className="text-sm h-16 font-bold line-clamp-3">
+            className="text-sm h-16 font-bold line-clamp-3 max-[460px]:hidden">
             Seguro
           </Typography>
           <Typography
             component="h3"
             variant="h5"
-            className="text-sm h-16 font-bold line-clamp-3">
+            className="text-sm h-16 font-bold line-clamp-3 max-sm:hidden">
             Valor
           </Typography>
 
@@ -90,7 +90,7 @@ export const Buying = () => {
         </Box>
         {Object.entries(cart).map(([_, value], index) => (
           <>
-            <Box key={value.id} className="grid grid-cols-5">
+            <Box key={value.id} className="grid grid-cols-5 max-sm:grid-cols-4 max-[460px]:grid-cols-3">
               <img
                 height={50}
                 width={20}
@@ -106,13 +106,13 @@ export const Buying = () => {
               <Typography
                 component="h3"
                 variant="h5"
-                className="text-sm w-60 h-16 line-clamp-3">
+                className="text-sm w-60 h-16 line-clamp-3 max-[460px]:hidden">
                 {value?.extraWarranty ? formatMoney(value?.extraWarranty ?? 0, 'BRL') : 'Sem seguro'}
               </Typography>
               <Typography
                 component="h3"
                 variant="h5"
-                className="text-sm w-60 h-16 line-clamp-3">
+                className="text-sm w-60 h-16 line-clamp-3 max-sm:hidden">
                 {formatMoney(value.price, 'BRL')}
               </Typography>
 
