@@ -17,7 +17,9 @@ export const Cart = ({ cart }: Props) => {
   const [clientWindowHeight, setClientWindowHeight] = useState(0);
 
   const handleScroll = () => {
-    setClientWindowHeight(window.scrollY);
+    if(window.scrollY > 100 && clientWindowHeight <= 100) {
+      setClientWindowHeight(window.scrollY);
+    }
   };
 
   useEffect(() => {
