@@ -80,21 +80,7 @@ export const Cart = () => {
     : 0;
 
   return (
-    <Container sx={{
-      height: 'fit-content',
-      display: 'flex',
-      alignItems: 'flex-start',
-      justifyContent: 'center',
-      marginTop: '150px',
-      padding: '16px',
-      gap: '16px',
-      '@media (max-width: 1000px)': {
-        flexDirection: 'column-reverse',
-        alignItems: 'center',
-        width: '100%',
-      }
-
-    }}>
+    <Container className="flex items-start justify-center mt-24 p-4 gap-4 max-lg:flex max-lg:flex-col-reverse max-lg:w-full" >
       {!Object.entries(cart).length && <Box className="flex flex-col items-center justify-center h-full">
 
         <img src={cartSvg} />
@@ -127,7 +113,7 @@ export const Cart = () => {
       }
 
       {!!Object.entries(cart).length &&
-        <Card className="max-w-[100%] w-full p-4 lg:max-w-lg lg:w-[32rem] sticky top-4"  >
+        <Card className="max-w-[100%] w-full p-4 lg:max-w-lg lg:w-[32rem] lg:sticky  lg:top-4"  >
           <Typography className="w-full text-center">Resumo</Typography>
           <Box className="flex">
             <Typography className="w-full text-left">Total:</Typography>
