@@ -46,7 +46,6 @@ export const Buying = () => {
 
       return
     } catch (error) {
-      console.log(error);
       return
     }
 

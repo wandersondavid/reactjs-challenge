@@ -1,6 +1,8 @@
+import { baseUrl } from "../../config"
 
 
-const BASE_URL = 'https://api.plushere.com.br'
+const BASE_URL = baseUrl()
+
 export const Products = async () => {
   try {
     const products = await fetch(`${BASE_URL}/products`)
