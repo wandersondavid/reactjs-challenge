@@ -7,7 +7,7 @@ import "./index.css";
 import { Home } from "./pages/Home";
 import { Cart } from "./pages/Cart";
 import { Buying } from "./pages/Buying";
-
+import { Success } from "./pages/Success";
 
 function App() {
   const router = createBrowserRouter([
@@ -22,6 +22,10 @@ function App() {
     {
       path: "/buying",
       element: <Buying />,
+    },
+    {
+      path: "/success",
+      element: <Success />,
     },
   ]);
 
