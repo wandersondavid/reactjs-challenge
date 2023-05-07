@@ -75,7 +75,7 @@ export const Home = () => {
       {Object.entries(products).map(([key, value], index) => (
         <React.Fragment key={key}>
           <h2 key={`${key}-${index}`} className="text-zinc-800 mt-6 capitalize font-bold">{key}</h2>
-          <Box key={key} className="grid gap-4 grid-cols-2 py-4 sm:grid-cols-3 md:grid-cols-4">
+          <Box key={key} className="grid gap-4 grid-cols-1 py-4 min-[420px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
             {value?.map((product) => (<CardProduct
               key={product.id}
               id={product.id}
