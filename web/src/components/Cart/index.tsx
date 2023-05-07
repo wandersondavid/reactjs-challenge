@@ -1,4 +1,4 @@
-import { Box, CardContent, IconButton, Typography } from "@mui/material"
+import { Box, CardContent, IconButton, Typography, Badge } from "@mui/material"
 
 import { ShoppingBasket } from "@mui/icons-material"
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -13,12 +13,15 @@ type Props = {
 
 export const Cart = ({ cart }: Props) => {
 
+  const quantity = Object.entries(cart).reduce((acc, [_, value]) => acc + value.amount, 0)
+
   return (
     <Card className="flex justify-between px-4 h-20 items-center ">
       <Box className="flex">
-        <ShoppingBasket className="text-zinc-800" />
-
-        <Typography component="span" variant="h5" className="text-center text-xl w-full font-bold pl-2">
+        <Badge badgeContent={quantity} color="primary">
+          <ShoppingBasket className="text-zinc-800 ml-1" />
+        </Badge>
+        <Typography component="span" variant="h5" className="text-center text-xl w-full font-bold pl-3">
 
           {!!Object.keys(cart).length &&
             formatMoney(Object.entries(cart).reduce((acc, [_, value]) => acc + value.amount * value.price, 0), 'BRL')
