@@ -30,13 +30,11 @@ export const Cart = ({ cart }: Props) => {
       </Box>
 
       {!!Object.keys(cart).length &&
-        <Box className="flex items-center text-base text-zinc-800 border p-2 border-zinc-500 rounded-xl" >
-          <Link to={'/cart'}>
-            Finalizar compra
-            <ArrowForwardIosIcon className="text-zinc-800 text-base" />
-          </Link>
-        </Box>}
-
+        <Link to={'/cart'} className="flex items-center text-base text-zinc-800 border p-2 border-zinc-500 rounded-xl">
+          <Typography className="hidden sm:flex" >Finalizar compra</Typography>
+          <ArrowForwardIosIcon className="text-zinc-800 text-base" />
+        </Link>
+      }
     </Card>
   )
 }
