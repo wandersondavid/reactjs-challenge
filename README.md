@@ -2,7 +2,7 @@
 ## Executando o projeto React
 Para executar o projeto, siga os passos abaixo:
 
- - Acesse a pasta ``extended-warranty`` através do terminal
+ - Acesse a pasta ``web`` através do terminal
  - Execute o comando ``pnpm install`` para instalar as dependências do projeto
  - Em seguida, execute o comando ``pnpm dev`` para iniciar o servidor de desenvolvimento
  - O projeto será executado em seu navegador padrão no endereço *http://localhost:5173/*.
@@ -10,7 +10,7 @@ Para executar o projeto, siga os passos abaixo:
 ## Build React
 Para gerar a build do projeto, siga os passos abaixo:
 
- - Acesse a pasta ``extended-warranty`` através do terminal
+ - Acesse a pasta ``web`` através do terminal
  - Execute o comando ```pnpm build```
  - Os arquivos da build serão gerados na pasta dist/ na raiz do projeto
 
@@ -19,7 +19,7 @@ O projeto ReactJS Challenge possui integração com a API Stripe para processame
 
 Para isso, siga os passos abaixo:
 
-Crie um arquivo .env na raiz do projeto na pasta `server`
+Crie um arquivo .env na raiz do projeto na pasta `api`
 Adicione as seguintes variáveis de ambiente no arquivo:
 PORT: porta em que o servidor será executado (ex: 3333)
 FRONT_DOMAIN: domínio do frontend da aplicação (ex: http://localhost:5173)
@@ -37,7 +37,7 @@ Executando o projeto com integração com API Stripe
 Para executar o projeto com a integração com API Stripe, siga os passos abaixo:
 
 Certifique-se de ter configurado corretamente as variáveis de ambiente no arquivo .env
-Acesse a pasta ``server`` através do terminal
+Acesse a pasta ``api`` através do terminal
 Execute o comando pnpm install para instalar as dependências do projeto
 Em seguida, execute o comando pnpm dev para iniciar o servidor de desenvolvimento em seguida execute o endpoint ``http://localhost:3333/migration`` para cadastrar os produtos no stripe.
 
