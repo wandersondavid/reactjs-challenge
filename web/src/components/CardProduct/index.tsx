@@ -19,7 +19,7 @@ export const CardProduct = (props: Props) => {
   return (
     <Card
       key={props.id}
-      className="flex flex-col justify-start h-[32rem]"
+      className="flex flex-col justify-start h-[31rem]"
     >
 
       <Box
@@ -61,7 +61,7 @@ export const CardProduct = (props: Props) => {
             color="text.secondary"
             component="span"
             className="text-sm"
-            >
+          >
             ({props.rating.rate})
           </Typography>
         </Box>
