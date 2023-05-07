@@ -11,7 +11,7 @@ export const Success = () => {
     >
       <Typography  component="h3"
             variant="h5"
-            className="text-sm h-16 font-bold line-clamp-3 text-zinc-800 text-lg"> Compra concluida com sucesso!</Typography>
+            className="h-16 font-bold line-clamp-3 text-zinc-800 text-lg">Compra concluida com sucesso!</Typography>
       <img
         height={300}
         width={300}
