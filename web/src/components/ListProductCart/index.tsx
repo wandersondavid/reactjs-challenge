@@ -48,7 +48,7 @@ export const ListProductCart = (props: Props) => {
         </Typography>
 
         <Box className="flex w-[160px] items-center flex-col" >
-          <Box className="flex w-[160px] justify-between">
+          <Box className="flex w-[160px] justify-between items-center">
             <Button onClick={() => handleChangeProduct(props, 'remove')} variant="outlined">
               -
             </Button>
