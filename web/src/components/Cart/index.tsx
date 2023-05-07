@@ -1,5 +1,5 @@
 import { Box, CardContent, IconButton, Typography, Badge } from "@mui/material"
-
+import React, { useEffect, useState } from "react";
 import { ShoppingBasket } from "@mui/icons-material"
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Link } from "react-router-dom"
@@ -14,9 +14,19 @@ type Props = {
 export const Cart = ({ cart }: Props) => {
 
   const quantity = Object.entries(cart).reduce((acc, [_, value]) => acc + value.amount, 0)
+  const [clientWindowHeight, setClientWindowHeight] = useState(0);
+
+  const handleScroll = () => {
+    setClientWindowHeight(window.scrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
 
   return (
-    <Card className="flex justify-between px-4 h-20 items-center ">
+    <Card className={clientWindowHeight <= 100 ? `  flex justify-between px-4 h-20 items-center` : "max-w-[100%] sticky top-0 flex justify-between px-4 h-20 items-center z-50"}>
       <Box className="flex">
         <Badge badgeContent={quantity} color="primary">
           <ShoppingBasket className="text-zinc-800 ml-1" />
