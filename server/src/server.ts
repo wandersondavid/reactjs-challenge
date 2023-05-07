@@ -23,7 +23,7 @@ async function api() {
   await fastify.register(productRoutes)
 
 
-  await fastify.listen({ port: PORT, host: '0.0.0.0' })
+  await fastify.listen({ port: PORT })
 }
 
 api()
