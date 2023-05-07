@@ -35,11 +35,20 @@ export const Buying = () => {
       }
     });
 
-    const response = await Checkout(data);
-    console.log(response);
-    window.location.href = response.url;
-    return
+    console.log(data);
 
+    try {
+      const response = await Checkout(data);
+
+      if (response?.statusCode === 500) return
+
+      window.location.href = response.url;
+
+      return
+    } catch (error) {
+      console.log(error);
+      return
+    }
 
   }
 
